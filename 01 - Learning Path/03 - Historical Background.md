@@ -7,181 +7,314 @@ tags: [learning-path, history]
 
 ## What Is This Note About?
 
-Grokking was officially named and described in 2022. But the ideas behind it did not appear from nowhere.
+Grokking did not appear out of nowhere in 2022.
 
-For decades before 2022, researchers were puzzling over a related mystery: **why do large neural networks — which have far more capacity than they need — still learn to generalise correctly?** Classical statistics said they should fail. They didn't.
+For **decades** before the word "grokking" was even invented, researchers were puzzled by something strange: **why do large neural networks — networks with far more adjustable pieces than they should need — still manage to learn correctly on new data?**
 
-This note traces the history of that puzzle, and shows how grokking is the latest chapter in a long story.
+This shouldn't work. According to basic statistics, it shouldn't. Yet it does.
+
+This note tells the story of that mystery. It shows how grokking is just the latest, clearest example of a problem that has confused researchers for 30+ years.
 
 ---
 
-## The Central Puzzle That Set the Stage
+## The Puzzle That Started Everything
 
-Here is the classical prediction from statistics:
+Let me explain the puzzle with a simple rule from statistics:
 
-> If a model has more adjustable parameters than it has training examples, it will simply memorise the training data and fail on anything new.
+> **If a model has more parameters than training examples, it will memorise the data and fail on anything new.**
 
-This seemed reasonable. If you have enough flexibility, you can memorise anything — but memorisation is not the same as understanding.
+This rule made sense. Think of it like this: if you give someone a photographic memory and only 50 photos to remember, they will remember them perfectly. But that doesn't mean they understood what's in the photos. Show them a new photo, and they fail.
 
-But in the 2010s, researchers noticed something strange: **huge neural networks were memorising the training data AND still generalising correctly to new examples**.
+Yet in the 2010s, something impossible happened. Researchers discovered that **huge neural networks with millions of parameters were memorising training data AND still succeeding on brand new data.**
 
-How could that be?
+How?
 
-One famous experiment made this explicit: researchers trained networks on completely **random labels** — where every image was assigned a random, meaningless category. The network memorised these random labels perfectly. But the same type of network, trained on real data with real labels, also generalised correctly.
+### A Famous Proof of the Puzzle
 
-This seemed contradictory. The same network can memorise nonsense, and yet somehow also learn meaningful structure.
+In 2017, researchers did a dramatic experiment:
+
+They trained a neural network on **completely random labels**.
+
+Imagine labelling 1000 dog photos with random fruits: apple, banana, pear, etc. The labels have nothing to do with the images. The network cannot possibly learn a real rule.
+
+What happened?
+
+The network **memorised every single random label perfectly**. 100% accuracy on training data.
+
+But here's the bizarre part: the exact same type of network, trained on **real images with real labels**, also learned correctly on new images it had never seen.
+
+> [!WARNING]
+> How can the same network memorise nonsense perfectly, yet also learn meaningful patterns on real data? This is the paradox. Grokking research tries to solve it.
+
+---
+
+## Why This Puzzle Matters
+
+The puzzle matters because it breaks a fundamental rule we thought was true.
+
+If bigger networks always memorise instead of learn, then:
+- Big language models should fail (they don't)
+- Big image classifiers should fail (they don't)
+- Deep learning shouldn't work at all (it does)
+
+Something was wrong with our understanding. **Grokking is a controlled, miniature version of this same mystery**, which makes it perfect for investigation.
+
+---
+
+## Key Discoveries in the History (1991-2026)
+
+Let me walk you through the major discoveries that led to understanding grokking. Each one added a piece to the puzzle.
+
+---
+
+### 1991 — The Hidden Plateau Effect
+
+**Discovery:** Simple neural networks can have long "stuck" phases where nothing seems to happen, then suddenly improve.
+
+**What it means:** Researchers studied the simplest possible networks (linear networks). They proved mathematically that these networks sometimes show:
+- A flat performance plateau that lasts a long time
+- Then a sudden jump in performance
+- The network was building structure during the "stuck" phase, even though the scores weren't changing
+
+**Why it matters:** This is the ancestor of grokking. It shows that stagnation doesn't mean the network is frozen. Something is happening underneath.
+
+> [!ANALOGY]
+> Like a student studying for a test. For weeks, practice tests show no improvement. Then one week, suddenly everything clicks. The student was building understanding the whole time.
+
+---
+
+### 2017 — The Memorisation Paradox (Zhang et al.)
+
+**Discovery:** Large neural networks can memorise random data perfectly AND still learn real data correctly.
+
+**The experiment:** Researchers took images and gave them random labels (no pattern). A network memorised these random labels to 100% accuracy. But the same network, trained on real images, also generalised to new images.
+
+**Why it matters:** This broke the old rule. Big networks don't automatically memorise and fail. Something else is happening.
+
+> [!TIP]
+> Think of a student who can memorise a phone book word-for-word, yet still learns calculus correctly. The capacity to memorise doesn't prevent learning.
+
+---
+
+### 2017 — Phase Transitions in Learning (Physics Approach)
+
+**Discovery:** Learning doesn't happen gradually. It happens in sharp jumps at critical points.
+
+**What it means:** Researchers from physics noticed learning behaves like physical systems. Water freezes at a specific temperature — not gradually, but suddenly. Similarly:
+- **Below** a threshold amount of training data, a network fails completely to learn
+- **Above** that threshold, it suddenly succeeds
+- There is no "gradual middle ground"
+
+**Why it matters:** This shows grokking is not unique. Sharp jumps are built into how learning works.
+
+---
+
+### 2018 — Training Process Favours Simple Solutions (Implicit Regularisation)
+
+**Discovery:** The training process itself (called [[Gradient Descent]]) automatically favours simpler solutions.
+
+**What it means:** When you train a network, gradient descent doesn't find *any* solution that fits the data. It finds the **simplest** solution. It's like the network's teacher is saying: "Find a rule that works, but use the fewest resources possible."
+
+**Why it matters for grokking:** The network starts with a memorised solution (complex, wasteful). But gradient descent keeps pushing it toward a simpler, rule-based solution. Eventually, the rule-based solution becomes more efficient than memorisation.
+
+> [!EXAMPLE]
+> Imagine two ways to remember a phone book:
+> 1. Memorise every phone number exactly (complex, lots of memory)
+> 2. Remember a pattern (simple, less memory)
+> 
+> A process that rewards efficiency will prefer option 2.
+
+---
+
+### 2018 — The Double Descent Phenomenon
+
+**Discovery:** There is a critical size where networks transition from "too small to memorise" to "large enough to memorise."
+
+**What it means:** As networks get bigger:
+- Small network: cannot fit training data → fails on test data
+- Medium network (critical boundary): **test error peaks sharply** ← odd behaviour
+- Large network: fits training data → still succeeds on test data
+
+**Why it matters:** Right at this critical boundary, something unusual happens. Test performance gets worse before it gets better. [[Double Descent]] is closely related to grokking's sudden jump.
+
+---
+
+### 2020 — Hidden Structure Keeps Forming After Perfect Accuracy (Neural Collapse)
+
+**Discovery:** Even after a network memorises all training data perfectly, its internal hidden layer keeps reorganising.
+
+**What it means:** Imagine the network has different "memory slots" for different types of data. After perfect memorisation:
+- These slots don't stay random
+- They gradually arrange into a beautiful, organised geometric pattern
+- This keeps happening even though accuracy is already 100%
+
+**Why it matters:** This proved the plateau is not empty. The network is actively reorganising itself. This reorganisation is what leads to [[Grokking]].
 
 > [!NOTE]
-> This paradox — that large networks can memorise anything, yet still generalise on real tasks — is the deep question that grokking research is trying to understand. Grokking is a controlled, small-scale version of this exact puzzle.
+> The plateau looks silent from the outside (accuracy not changing). But inside, the network is completely reorganising itself. This is crucial for understanding grokking.
 
 ---
 
-## Key Milestones in the History
+### 2022 — Grokking Is Named and Studied (Power et al.)
 
-### 1991 — The First Hint: Long Plateaus in Simple Networks
+**Discovery:** A specific, reproducible pattern in small neural networks training on simple arithmetic tasks.
 
-The earliest ancestor of grokking was discovered in 1991 by researchers studying the simplest possible neural networks (called linear networks).
+**The pattern:**
+1. Training accuracy jumps to 100% quickly (memorisation)
+2. Test accuracy stays near 0% for a very long time (network is memorising)
+3. Then test accuracy suddenly jumps to ~100% (the grokking moment)
 
-They proved mathematically that even these simple networks can show:
-- Long periods where performance looks completely flat
-- Multiple moments where the network seems to reach a local best, then suddenly improves
-- A specific optimal moment to stop training
+**Why it matters:** This was the first **named, systematic study** of the phenomenon. It showed:
+- Grokking is reproducible
+- It can be studied scientifically
+- It happens in simple, controllable settings
 
-This was remarkable: even the simplest networks can have "stuck" phases that are not really stuck — something is building up underneath.
-
-Grokking is the dramatic, extreme version of this same behaviour.
-
----
-
-### 2017 — Large Networks Do Not Overfit Like They Should
-
-A landmark paper showed that deep neural networks can fit completely random data to perfect accuracy, yet still generalise on real data.
-
-This was the clearest possible demonstration that the classical rule ("too many parameters = overfitting") was wrong for these networks.
-
-The mystery of why big networks generalise — instead of memorising — became a central question in machine learning research.
+[[Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets|The original grokking paper]] made this discovery.
 
 ---
 
-### 2017 — Sharp Transitions in Learning (Statistical Physics)
+### 2023 — Reverse-Engineering the Grokked Network (Nanda et al.)
 
-Researchers from physics brought a new tool: **phase transitions**.
+**Discovery:** The network actually builds elegant, interpretable mathematical structures inside.
 
-A phase transition is like water freezing — the temperature crosses a threshold, and the system suddenly switches from one state (liquid) to a completely different state (solid).
+**What it means:** When researchers looked inside a grokked network, they found:
+- A specific computational mechanism
+- Using mathematical patterns (Fourier features, wave-like structures)
+- Very different from a memorised solution
 
-These researchers found that in learning systems, there are similar sharp thresholds. Below a certain number of training examples, a model completely fails to learn. Above that threshold, it suddenly succeeds. There is no gradual middle ground.
+**Why it matters:** This showed grokking isn't magic. The network solves the problem using understandable math.
 
-This "all-or-nothing" pattern is closely related to what we see in grokking, where test accuracy jumps suddenly from near 0% to near 100%.
-
----
-
-### 2018 — Gradient Descent Protects Against Overfitting
-
-Researchers discovered that the training process itself (called gradient descent) acts as a kind of built-in protection against overfitting, even without any explicit rules telling it to.
-
-In a big overparameterised network, gradient descent tends to find solutions that are simpler and more efficient — not just any solution that fits the data, but the **simplest** one.
-
-This is important for grokking: it helps explain why the network eventually drifts from the memorised solution (complex, large) to the generalised solution (simpler, smaller).
+[[Nanda - Progress Measures for Grokking via Mechanistic Interpretability|Nanda's mechanistic interpretability study]] revealed what was actually happening.
 
 ---
 
-### 2018 — The Boundary Between "Too Small" and "Too Large"
+### 2023 — Why Does the Network Choose the Rule? (Varma et al.)
 
-Researchers from physics found that the critical point where a network goes from too small (cannot memorise the data) to large enough (can memorise the data) behaves like a physical phase transition.
+**Discovery:** The rule-based solution becomes preferred because it is more efficient.
 
-Right at this boundary, something unusual happens: test error peaks sharply before falling again. This is closely related to the "double descent" phenomenon described in the next note.
+**What it means:** Compare two solutions:
+- **Memorisation:** Remember every example individually (uses lots of network capacity)
+- **Rule:** Learn the underlying pattern (uses little capacity)
 
----
+Gradient descent naturally prefers the efficient solution.
 
-### 2020 — Structure Keeps Forming After Perfect Accuracy
+**Why it matters:** This explains the *why* behind grokking. The network doesn't stay memorised because efficiency pressure pushes it toward rules.
 
-A key discovery: even after a network has reached perfect accuracy on its training data, the network's internal structure **keeps changing and becoming more organised**.
-
-Researchers found that the network's hidden representations of different classes converge to a very specific, geometrically beautiful arrangement. This keeps happening even after training accuracy cannot get any better.
-
-This was crucial for understanding grokking: the "silent" plateau phase is not empty. Structure is forming. The network is reorganising itself, even though the scores are not moving.
+[[Varma - Explaining Grokking Through Circuit Efficiency|Varma's circuit efficiency framework]] explained this mechanism.
 
 ---
 
-### 2022 — Grokking Is Named
+## Timeline Summary
 
-In 2022, a team at OpenAI (Power et al.) trained small transformer models on simple arithmetic tasks (like clock math) and made the grokking observation explicit for the first time.
+Here's the story at a glance:
 
-They showed:
-- Training accuracy hits 100% quickly
-- Test accuracy stays near 0% for a very long time
-- Then test accuracy jumps to near 100%
-
-They gave this phenomenon the name "grokking" and showed it was reproducible and could be studied scientifically.
-
----
-
-### 2023 — What Is Happening Inside
-
-After 2022, researchers began asking: **what is the network actually doing during the plateau?**
-
-A team (Nanda et al.) reverse-engineered the grokked network and found it had built a specific, elegant computational structure — like a miniature gear mechanism — that computes the correct answer using mathematical patterns related to waves and rotations.
-
-Another team (Varma et al.) showed why this structure eventually wins: it is more **efficient** than the memorised solution. The rule-based solution can do the same job with fewer resources, so a training process that rewards efficiency will eventually prefer it.
+| Year | What Happened |
+|------|---------------|
+| **1991** | Simple networks show long stuck phases that aren't really stuck — something building underneath |
+| **2017** | Networks memorise random labels perfectly, yet learn real data correctly — the paradox |
+| **2017** | Learning happens in sharp jumps at critical thresholds, not gradually |
+| **2018** | Training automatically favours simple, efficient solutions |
+| **2018** | Critical point between "too small" and "too large" networks shows strange double-descent behaviour |
+| **2020** | Internal structure keeps reorganising even after perfect memorisation |
+| **2022** | Grokking officially named and studied in detail (Power et al.) |
+| **2023** | Grokked networks actually build interpretable mathematical circuits |
+| **2023** | Circuit efficiency explains why networks prefer rules over memorisation |
 
 ---
 
-## A Simple Timeline
+## Understanding the Big Picture
 
-| Year | Discovery |
-|------|-----------|
-| 1991 | Simple networks can show long plateaus before improving — the first ancestor of grokking |
-| 2017 | Large networks memorise random data yet still generalise on real data — the central paradox |
-| 2017 | Sharp "all-or-nothing" transitions discovered in learning — connected to grokking's sudden jump |
-| 2018 | Training process itself provides built-in protection against overfitting |
-| 2018 | Critical boundary between "too small" and "too large" networks behaves like a physical transition |
-| 2020 | Structure keeps forming after perfect accuracy — the plateau is not empty |
-| 2022 | Grokking officially named and studied on clock-math tasks |
-| 2023 | The mechanism inside a grokked network is reverse-engineered |
-| 2024–2025 | New early-warning signals proliferate; grokking found in non-neural-network systems |
-| 2026 | The thesis proposes the first fair comparison of all early-warning signals |
+Before grokking was named in 2022, researchers had been puzzling over one central question for 30+ years:
+
+> **Why do large neural networks succeed at learning when statistics says they should fail?**
+
+Each discovery in this timeline added a clue:
+- Networks can have hidden plateaus (1991)
+- Large networks memorise yet still learn (2017)
+- Learning jumps rather than slides (2017)
+- The training process favours efficiency (2018)
+- Something weird happens at critical boundaries (2018)
+- Internal reorganisation happens silently (2020)
+
+**Grokking is the answer to all these clues.** It's a clean, simple setting where you can watch the whole process happen, understand it completely, and answer the 30-year-old question.
+
+---
+
+## Important Concepts and Terms
+
+Let me define the key ideas in simple language:
+
+**Overfitting**
+When a network memorises specific examples instead of learning the general rule. Like a student who memorises past exams without understanding the material. Works perfectly on old exams, fails on new ones.
+
+**Generalisation**
+When a network learns the underlying rule or pattern. Like a student who understands the concept and can solve new problems they've never seen. This is what we actually want.
+
+**Parameters**
+The adjustable numbers inside a neural network. Think of them like dials you can turn. More parameters = more dials to turn = more flexibility. But more flexibility makes it easier to memorise than to understand.
+
+**Gradient Descent**
+The training process that adjusts all the parameters. Imagine you're standing on a hilly landscape in total darkness. Gradient descent repeatedly takes a small step downhill. Eventually, it reaches a valley. This valley is the trained network.
+
+**Phase Transition**
+A sudden shift in behaviour when a threshold is crossed. Examples:
+- Water freezes at exactly 0°C (sudden, not gradual)
+- A light switch turns on suddenly (not gradually)
+- A network learning can jump from "cannot solve" to "can solve" suddenly
+
+**Plateau**
+A flat section. In grokking, test accuracy stays flat for a long time. It looks frozen, but the network is silently reorganising.
+
+**Memorisation**
+Remembering specific examples exactly, like recording a video. Doesn't require understanding the pattern.
+
+**Rule Learning**
+Finding the underlying pattern or formula. Like learning "add 1 each time" instead of memorising [1, 2, 3, 4].
 
 ---
 
 ## Why This History Matters
 
-Understanding this history helps you see grokking not as a strange isolated quirk, but as a **clear, small-scale example of questions that have occupied researchers for decades**:
+This history matters because it shows **grokking is not a quirk — it's a window into something fundamental.**
 
-- Why do large networks generalise?
-- When does learning happen in jumps rather than gradually?
-- What is a network secretly doing during a "stuck" phase?
-- What is the simplest possible controlled setting to study these questions?
+The 30-year puzzle is:
+- **Why do big networks learn?** Classical statistics says they should memorise and fail.
+- **When does learning happen in jumps?** Is it always sudden, or just sometimes?
+- **What's happening during the stuck phase?** The network clearly *is* doing something.
+- **What's the simplest system to study this?** We need something small enough to understand completely.
 
-Grokking answers all four: it is a **clean, reproducible, fully observable case** of generalisation emerging after apparent stagnation, in a system small enough to inspect completely.
+**Grokking answers all of these.** It's a perfect laboratory experiment:
+- Small and simple
+- Reproducible (happens reliably)
+- Fully observable (we can look inside)
+- Clean and clear
 
----
-
-## Important Terms
-
-**Overfitting:** When a network memorises the training data so closely that it fails on any new data. Like a student who memorises past exams but cannot answer new questions.
-
-**Generalisation:** When a network learns the underlying rule and can correctly answer new questions it has never seen.
-
-**Parameters:** The adjustable numbers inside a neural network. More parameters means more flexibility — and historically, the fear was that too many parameters would lead to overfitting.
-
-**Gradient descent:** The training process. At each step, it adjusts all the network's parameters slightly to improve performance. Think of it as slowly rolling downhill to find the lowest point in a landscape.
-
-**Phase transition:** A sudden shift in the behaviour of a system as a threshold is crossed. Examples: water freezing, a magnet losing its magnetism. In learning, it refers to the sudden jump from "cannot generalise" to "can generalise."
-
-**Linear network:** The simplest possible neural network. It has no non-linear parts, making it mathematically tractable — you can prove things about it rigorously.
+Grokking is like what happens in big, complex networks, but zoomed in and simplified so we can understand it.
 
 ---
 
 ## Key Takeaways
 
-- Grokking did not come from nowhere. It is the latest chapter in a 30+ year story about why large networks generalise at all.
-- The central paradox is: networks that can memorise anything still learn meaningful structure on real tasks.
-- Key discoveries — long plateaus in simple networks, sharp learning transitions, structure forming after accuracy peaks — all set the stage for grokking.
-- Grokking is valuable because it makes this complex phenomenon small and observable.
+1. **Grokking is the latest chapter in a 30+ year mystery.** It didn't appear out of nowhere.
+
+2. **The mystery is: why do large networks learn when they could memorise?** This should be impossible according to old statistics.
+
+3. **Key discoveries built the picture:** Stuck plateaus, memorisation paradoxes, sharp transitions, efficiency pressure, internal reorganisation.
+
+4. **Grokking is valuable because it makes the mystery visible and controllable.** We can watch it happen, understand it, and measure it.
+
+5. **Understanding this history helps you see grokking as fundamental, not accidental.** It's not a bug. It's a feature of how neural networks actually work.
 
 ---
 
 ## Related Notes
-- [[Research Timeline]] · [[Evolution of Grokking Research]]
-- [[The Generalization Puzzle]]
-- [[Double Descent]] · [[Phase Transition]]
+
+Learn more about the concepts in this timeline:
+
+- [[02 - The Grokking Training Dynamics]] — What grokking actually looks like
+- [[04 - Core Experimental Setup]] — How grokking experiments are designed
+- [[Double Descent]] — The strange boundary phenomenon
+- [[Phase Transition]] — Sharp transitions in learning
+- [[Generalization|The Generalization Puzzle]] — Why networks learn at all
+- [[Research Timeline]] — Broader timeline of grokking research
+- [[Evolution of Grokking Research]] — How understanding evolved
