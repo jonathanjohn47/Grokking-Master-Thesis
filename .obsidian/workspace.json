@@ -202,11 +202,14 @@
       "bases:Create new base": false
     }
   },
-  "active": "89b8db13881b1a23",
+  "active": "9e6e2d06706e5914",
   "lastOpenFiles": [
+    "02 - Concepts/Principal Component Analysis.md",
+    "02 - Concepts/Dropout.md",
+    "01 - Learning Path/03 - Historical Background.md",
+    "01 - Learning Path/02 - The Grokking Training Dynamics.md",
     "02 - Concepts/Weight Decay.md",
     "02 - Concepts/Weight Decay Necessity.md",
-    "01 - Learning Path/02 - The Grokking Training Dynamics.md",
     "02 - Concepts/Implicit Regularization.md",
     "01 - Learning Path/01 - What Is Grokking.md",
     "04 - Synthesis/What Causes Grokking.md",
@@ -236,9 +239,6 @@
     "02 - Concepts/Backpropagation.md",
     "02 - Concepts/Gradient Clipping.md",
     "02 - Concepts/Scaling Laws.md",
-    "02 - Concepts/Encoding.md",
-    "02 - Concepts/Gradient Flow.md",
-    "02 - Concepts/Training Stability.md",
-    "02 - Concepts/Training Objectives.md"
+    "02 - Concepts/Encoding.md"
   ]
 }
