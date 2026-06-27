@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "01 - Learning Path/02 - The Grokking Training Dynamics.md",
+                "file": "02 - Concepts/AdamW.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "02 - The Grokking Training Dynamics"
+              "title": "AdamW"
             }
           }
         ]
@@ -204,8 +204,10 @@
   },
   "active": "89b8db13881b1a23",
   "lastOpenFiles": [
-    "01 - Learning Path/01 - What Is Grokking.md",
+    "02 - Concepts/Weight Decay.md",
     "04 - Synthesis/What Causes Grokking.md",
+    "01 - Learning Path/01 - What Is Grokking.md",
+    "01 - Learning Path/02 - The Grokking Training Dynamics.md",
     "Vault Overview.md",
     "00 - Start Here.md",
     "02 - Concepts/Self-Attention (Beginner Intro).md",
@@ -237,8 +239,6 @@
     "02 - Concepts/Training Objectives.md",
     "02 - Concepts/Language Models.md",
     "02 - Concepts/Activation Function.md",
-    "02 - Concepts/Multi-Head Self-Attention.md",
-    "02 - Concepts/Residual Connections.md",
-    "02 - Concepts/Next-Token Prediction.md"
+    "02 - Concepts/Multi-Head Self-Attention.md"
   ]
 }
