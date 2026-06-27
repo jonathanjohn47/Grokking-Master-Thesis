@@ -1,0 +1,244 @@
+{
+  "main": {
+    "id": "38b61a9def010c01",
+    "type": "split",
+    "children": [
+      {
+        "id": "28dbff55e807b076",
+        "type": "tabs",
+        "dimension": 62.58680555555556,
+        "children": [
+          {
+            "id": "89b8db13881b1a23",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "02 - Concepts/Transformer.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Transformer"
+            }
+          }
+        ]
+      },
+      {
+        "id": "cc0310658fa953c6",
+        "type": "tabs",
+        "dimension": 37.41319444444444,
+        "children": [
+          {
+            "id": "fdd3dca2180c55d7",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "bae07bc32bca8f3e",
+    "type": "split",
+    "children": [
+      {
+        "id": "07346acea0e019e0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1df38155c6990fa8",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "96e1556504c43116",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "7331318d38f51346",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 245
+  },
+  "right": {
+    "id": "5ba67b360ec3958f",
+    "type": "split",
+    "children": [
+      {
+        "id": "925ed0c4426f4c84",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "be51d4be4d02556b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Welcome"
+            }
+          },
+          {
+            "id": "5e55f0b83d60353e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Welcome"
+            }
+          },
+          {
+            "id": "61d9a2fc7eec5c37",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "b9e486b557d64fa6",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "14ee7f16b27e3abe",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Welcome.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Welcome"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "89b8db13881b1a23",
+  "lastOpenFiles": [
+    "graphify-out/cache/semantic",
+    "graphify-out/cache/stat-index.json",
+    "graphify-out/cache/ast/v0.8.42/30332c900164fe372b4c054fefde3d380462f88ab05ca9927bc8eb0a758f9b8c.json",
+    "graphify-out/cache/ast/v0.8.42/1777e3848d0d8319605c77276a4576063397b19ff11f71c100d9f85c44af333a.json",
+    "graphify-out/cache/ast/v0.8.42/15ac18e2bbe3a44ecc5905c619d7f3c152b200a53a26c120088624c2b7a35705.json",
+    "graphify-out/cache/ast/v0.8.42/080bb5e1aeba73da6ef1d33ab9d6efde107e61139e17064f9a891301b9cd5a81.json",
+    "graphify-out/cache/ast/v0.8.42/2ccb9be789f4b982543eda694e99fdc1cb65a343a52954e8b5b83ee1cdddf759.json",
+    "graphify-out/cache/ast/v0.8.42/4665383e44c4054eaa6d0ca81c28f9946473e4005d64a60942d845d96d57a783.json",
+    "graphify-out/cache/ast/v0.8.42/2da3e6d52dd615eb21d1c154f262bfaa6237a47fc5c85453a06aa959cf9222ec.json",
+    "graphify-out/cache/ast/v0.8.42/1a0f7b07f1c8458977c5d9e8f0d5b0007ad8004430f9cc0c0031ac81e4dcf2e0.json",
+    "graphify-out/cache/ast/v0.8.42/1b62c29428847965f305c5a52f22768cb0a81e9461acb023cf9ad70ac26b9b6a.json",
+    "02 - Concepts/Jamming Transition.md",
+    "02 - Concepts/Transformer.md",
+    "03 - Literature/Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets.md",
+    "02 - Concepts/Transfer Learning.md",
+    "02 - Concepts/Supervised Fine-Tuning.md",
+    "02 - Concepts/Backpropagation.md",
+    "02 - Concepts/Gradient Clipping.md",
+    "02 - Concepts/Scaling Laws.md",
+    "02 - Concepts/Encoding.md",
+    "02 - Concepts/Gradient Flow.md",
+    "02 - Concepts/Training Stability.md",
+    "02 - Concepts/Training Objectives.md",
+    "02 - Concepts/Language Models.md",
+    "02 - Concepts/Activation Function.md",
+    "02 - Concepts/Multi-Head Self-Attention.md",
+    "02 - Concepts/Residual Connections.md",
+    "02 - Concepts/Next-Token Prediction.md",
+    "02 - Concepts/Feed-Forward Network (MLP).md",
+    "02 - Concepts/Layer Normalization.md",
+    "02 - Concepts/Causal Masking.md",
+    "02 - Concepts/Residual Stream.md",
+    "compiled_vault.md",
+    "Compile All Notes.md",
+    "02 - Concepts/RoPE.md",
+    "02 - Concepts/Learned Positional Embeddings.md"
+  ]
+}

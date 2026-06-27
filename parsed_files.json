@@ -1,0 +1,587 @@
+{
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Biroli - Dynamical Regimes of Diffusion Models.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Biroli - Dynamical Regimes of Diffusion Models.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "diffusion",
+        "phase-transition",
+        "physics",
+        "generative"
+      ]
+    },
+    "links": [
+      "Random Matrix Theory",
+      "Advani - High-dimensional Dynamics of Generalization Error",
+      "12 - Modern Developments",
+      "Barbier - Optimal Errors and Phase Transitions in High-Dimensional GLMs",
+      "Spigler - A Jamming Transition Affects Generalization",
+      "00 - Start Here",
+      "Phase Transitions Across Models",
+      "Phase Transition"
+    ],
+    "content_length": 2696,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Phase Transition]]\n\n# Biroli \u2014 Dynamical Regimes of Diffusion Models\n\n# Citation\nBiroli, G., Bonnaire, T., de Bortoli, V., & M\u00e9zard, M. (2024). *Dynamical regimes of diffusion models.* Nature Communications 15 (s41467-024-54281-3).\n\n# The Gist (Plain Words)\nImage-generating \"diffusion\" models pass through sudden switches as they remove noise \u2014 first deciding the broad category, later the fine details \u2014 and these switches can be read off from the data's structure.\n\n# Research Question\nWhat **distinct dynamical regimes** govern the generative (backward) process of diffusion models in the high-dimensional, large-dataset limit, and what controls the transitions between them?\n\n# Methodology\nStatistical-physics analysis with both data dimension and sample size large and an optimally-trained score. Analytic solutions for Gaussian mixtures + numerical experiments on real data.\n\n# Key Findings\n- Three regimes: (1) **pure Brownian** noise; (2) a **speciation transition** where broad class structure emerges (like symmetry breaking); (3) a **collapse** phase attracted to a specific training point (glass-like condensation).\n- **Speciation time** is read from the **spectrum of the data correlation matrix**; **collapse time** from an **excess-entropy** measure \u2192 a \"curse of dimensionality\" for diffusion.\n\n# Strengths\n- Maps modern generative AI onto sharp, computable phase transitions.\n- Demonstrates the same spectral/entropy toolkit used for grokking order parameters.\n\n# Limitations\n- Diffusion generation, not classification/grokking; optimal-score idealisation.\n- Gaussian-mixture analytics; real-data results numerical.\n\n# Relation to Other Papers\n- Extends the [[Phase Transition]] programme of [[Barbier - Optimal Errors and Phase Transitions in High-Dimensional GLMs]] and [[Spigler - A Jamming Transition Affects Generalization]] to generative models.\n- Spectral-of-correlation-matrix method parallels [[Random Matrix Theory]] usage in [[Advani - High-dimensional Dynamics of Generalization Error]].\n\n# Relevance to Thesis\nLower (analogical). Shows transitions and order parameters are pervasive in deep learning and how to compute them \u2014 useful framing and potential methodology transfer, but not grokking-specific.\n\n# Key Quotes\n> \"the generative dynamics ... first encounters a speciation transition, where the broad structure of the data emerges ... followed by a collapse phase ... similar to condensation in a glass phase.\"\n\n# Tags\n#diffusion #phase-transition #physics #generative #spectral\n\n---\n## Related Notes\n- [[Phase Transition]] \u00b7 [[Random Matrix Theory]] \u00b7 [[Phase Transitions Across Models]] \u00b7 [[12 - Modern Developments]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Canatar - Spectral Bias and Task-Model Alignment.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Canatar - Spectral Bias and Task-Model Alignment.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "kernel",
+        "ntk",
+        "spectral-bias",
+        "theory"
+      ]
+    },
+    "links": [
+      "Feature Learning",
+      "Spectral Bias",
+      "Double Descent",
+      "Li - Representations and Generalization in Artificial and Brain Neural Networks",
+      "00 - Start Here",
+      "Neural Tangent Kernel",
+      "Mei - Generalization Error of Random Features Regression",
+      "Neural Tangent Kernel|NTK/NNGPK"
+    ],
+    "content_length": 2786,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Spectral Bias]] \u00b7 [[Neural Tangent Kernel]]\n\n# Canatar \u2014 Spectral Bias and Task-Model Alignment\n\n# Citation\nCanatar, A., Bordelon, B., & Pehlevan, C. (2021). *Spectral bias and task-model alignment explain generalization in kernel regression and infinitely wide neural networks.* Nature Communications 12:2914.\n\n# The Gist (Plain Words)\nA model generalises best when its built-in preferences line up with the task. The paper gives an exact formula for this and shows that more data can even hurt when model and task are misaligned.\n\n# Research Question\nWhat determines generalisation in **kernel regression** (and hence infinitely-wide nets via the **[[Neural Tangent Kernel|NTK/NNGPK]]**), and can a theory predict it on **real** data?\n\n# Methodology\nUsed the **replica method** of statistical mechanics to derive an analytic generalisation-error formula for any kernel and data distribution, as a function of (1) sample count, (2) kernel **eigenvalues/eigenfunctions** (inductive bias), (3) **alignment** of the target with eigenfunctions.\n\n# Key Findings\n- **[[Spectral Bias]]:** kernels learn target components along **top eigenfunctions first** (simple functions before complex).\n- **Task-model alignment** governs whether a kernel suits a task.\n- More data can **hurt** when noisy/misaligned \u2192 **non-monotonic learning curves with multiple peaks** (a kernel-world double descent).\n\n# Strengths\n- Analytic, applies to **real datasets** and to NTK kernels.\n- Quantitative notion of \"which functions generalise easily.\"\n\n# Limitations\n- **Lazy/kernel regime** \u2192 **no [[Feature Learning]]**; cannot model grokking's representation change.\n- Fixed kernel; assumes the NTK correspondence holds.\n\n# Relation to Other Papers\n- Defines the lazy-regime baseline that [[Li - Representations and Generalization in Artificial and Brain Neural Networks]] argues must be exceeded (feature learning) to explain real generalisation.\n- Non-monotonic curves echo [[Double Descent]] ([[Mei - Generalization Error of Random Features Regression]]).\n\n# Relevance to Thesis\nModerate (boundary case). Clarifies what the **fixed-kernel** theory can and cannot explain \u2014 grokking is precisely a *feature-learning* event beyond NTK, sharpening the thesis's conceptual scope.\n\n# Key Quotes\n> \"We elucidate an inductive bias of kernel regression to explain data with simple functions ... more data may impair generalization when noisy or not expressible by the kernel, leading to non-monotonic learning curves with possibly many peaks.\"\n\n# Tags\n#kernel #ntk #spectral-bias #theory #alignment\n\n---\n## Related Notes\n- [[Spectral Bias]] \u00b7 [[Neural Tangent Kernel]] \u00b7 [[Feature Learning]] \u00b7 [[Li - Representations and Generalization in Artificial and Brain Neural Networks]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Fang - Layer-Peeled Model and Minority Collapse.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Fang - Layer-Peeled Model and Minority Collapse.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "neural-collapse",
+        "theory",
+        "class-imbalance",
+        "phase-transition"
+      ]
+    },
+    "links": [
+      "Simplex ETF",
+      "Papyan - Prevalence of Neural Collapse",
+      "Neural Collapse",
+      "Weight Decay",
+      "Minority Collapse",
+      "Mixon - Neural Collapse with Unconstrained Features",
+      "Layer-Peeled Model",
+      "Xu - Dynamics in Deep Classifiers with the Square Loss",
+      "00 - Start Here",
+      "Class Imbalance",
+      "Phase Transition"
+    ],
+    "content_length": 4671,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Layer-Peeled Model]] \u00b7 [[Minority Collapse]]\n\n# Fang \u2014 Layer-Peeled Model & Minority Collapse\n\n# Citation\nFang, C., He, H., Long, Q., & Su, W. J. (2021). *Exploring deep neural networks via the Layer-Peeled Model: Minority collapse in imbalanced training.* Proceedings of the National Academy of Sciences (PNAS), 118(43).\n\n# Research Question\nDeep networks have too many layers to analyse all at once. Can we build a **simple stand-in model** that still behaves like a real trained network \u2014 and use it to both *explain* known patterns and *predict* new ones?\n\n# The Big Idea (in plain words)\n\"Peel off\" the top layer of the network and treat everything below it as a free knob. You are left with just two things to study: the **last-layer features** and the **last-layer classifier**. This stripped-down model \u2014 the **Layer-Peeled Model** \u2014 is small enough to solve with math, yet it reproduces real training behaviour. With it, the authors re-explain [[Neural Collapse]] and discover a brand-new failure mode they call **Minority Collapse**.\n\n# Methodology\n- Define the **[[Layer-Peeled Model]]**: minimise the loss over (last-layer weights, last-layer features) under simple size limits (\"norm budgets\") on each. The data only enters through these budgets.\n- Solve it analytically for cross-entropy, contrastive, and general softmax-based losses.\n- Test the predictions on real deep networks (VGG13 on subsets of CIFAR-10) with [[Weight Decay]].\n\n# Key Findings\n- **Balanced data \u2192 Neural Collapse.** Any best solution of the Layer-Peeled Model forms a **[[Simplex ETF]]** (classes spread out as symmetrically as possible). This gives a clean reason *why* [[Neural Collapse]] appears.\n- **Imbalanced data \u2192 Minority Collapse.** When some classes have far fewer examples than others, the rare (\"minority\") classes' classifiers get pushed together until they become **identical directions** \u2014 the network can no longer tell them apart. See [[Minority Collapse]] and [[Class Imbalance]].\n- **A sharp threshold (phase transition).** As the imbalance ratio R grows, nothing much happens \u2014 until R crosses a critical point, after which minority classifiers snap to parallel. The Layer-Peeled Model **predicts this tipping point in advance**, and real networks match it closely. See [[Phase Transition]].\n- **The model predicts before it is confirmed.** Minority Collapse was first seen in the toy model, then found in the real network \u2014 evidence the surrogate is genuinely useful.\n\n# Strengths\n- Turns an intractable network into a solvable model **without losing the key behaviour**.\n- Makes a falsifiable prediction (the tipping point) that experiments confirm.\n- Practically important: explains *why* models fail on rare classes and hints at fixes.\n\n# Limitations\n- Idealised: the layers below the top are summarised by a single budget, so fine architecture details are dropped.\n- Focuses on the terminal phase (long after zero training error), not the full training path.\n- Assumes the network can reach a true minimum.\n\n# Relation to Other Papers\n- Sibling to [[Mixon - Neural Collapse with Unconstrained Features]] \u2014 both use a stripped-down last-layer model; Fang adds the imbalanced case and the phase transition.\n- Extends the empirical [[Papyan - Prevalence of Neural Collapse]] with a tractable theory.\n- The dynamic, training-time version of these ideas is [[Xu - Dynamics in Deep Classifiers with the Square Loss]].\n\n# Relevance to Thesis\nModerate. Three hooks: (1) a clean **order-parameter / phase-transition** story (the imbalance tipping point) that parallels grokking's transition; (2) **[[Simplex ETF]] geometry** as a candidate signal for \"good structure has formed\"; (3) a caution for grokking benchmarks \u2014 on **imbalanced** algorithmic tasks, minority collapse could mask or mimic a grok, so class balance is a variable worth controlling.\n\n# Key Quotes\n> \"Any solution to this model forms a simplex equiangular tight frame, which in part explains the recently discovered phenomenon of neural collapse.\"\n\n> \"Our analysis of the Layer-Peeled Model reveals a hitherto unknown phenomenon that we term Minority Collapse, which fundamentally limits the performance of deep learning models on the minority classes.\"\n\n# Tags\n#neural-collapse #layer-peeled-model #minority-collapse #class-imbalance #phase-transition #theory\n\n---\n## Related Notes\n- [[Layer-Peeled Model]] \u00b7 [[Minority Collapse]] \u00b7 [[Class Imbalance]] \u00b7 [[Simplex ETF]]\n- [[Neural Collapse]] \u00b7 [[Mixon - Neural Collapse with Unconstrained Features]] \u00b7 [[Papyan - Prevalence of Neural Collapse]] \u00b7 [[Xu - Dynamics in Deep Classifiers with the Square Loss]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Geirhos - Shortcut Learning in Deep Neural Networks.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Geirhos - Shortcut Learning in Deep Neural Networks.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "shortcut-learning",
+        "generalization",
+        "robustness",
+        "perspective"
+      ]
+    },
+    "links": [
+      "Out-of-Distribution Generalization",
+      "Inductive Bias",
+      "Shortcut Learning",
+      "The Generalization Puzzle",
+      "Memorization",
+      "00 - Start Here",
+      "Generalization",
+      "Zhang - Understanding Deep Learning Still Requires Rethinking Generalization"
+    ],
+    "content_length": 4507,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Shortcut Learning]]\n\n# Geirhos \u2014 Shortcut Learning in Deep Neural Networks\n\n# Citation\nGeirhos, R., Jacobsen, J.-H., Michaelis, C., Zemel, R., Brendel, W., Bethge, M., & Wichmann, F. A. (2020). *Shortcut learning in deep neural networks.* Nature Machine Intelligence, 2, 665\u2013673.\n\n# Research Question\nWhy do deep networks that score well on benchmarks so often fail in the real world? The authors argue that many separate-looking failures are really one problem: **shortcut learning**. A shortcut is a quick-and-dirty rule that works on the test set you happen to use, but breaks the moment the data changes a little.\n\n# The Big Idea (in plain words)\nA network is supposed to learn the *intended* rule (e.g. \"tell a cow from a camel by its shape\"). Instead it often learns a cheaper rule that just happens to work on the training photos (e.g. \"cows appear on green grass, camels on sand\"). On normal test photos the cheap rule looks great. Show it a cow on a beach and it fails. The network was never \"wrong\" by its own logic \u2014 it simply solved an easier problem than the one we cared about.\n\n# Methodology\nThis is a **perspective / review paper**, not an experiment. It pulls together evidence from computer vision, language, reinforcement learning, and fairness, and borrows ideas from psychology and education to build a shared vocabulary. Its core tool is a simple **taxonomy of decision rules** (see below) and a toy star-vs-moon example showing a network that secretly classifies by *position* instead of *shape*.\n\n# Key Findings\n- **A ladder of solutions.** All possible rules \u2192 rules that fit the training data \u2192 rules that also work on similar (i.i.d.) test data \u2192 the intended rule. **Shortcuts sit on the second-to-last rung**: they pass the usual test but are not what we meant. See [[Out-of-Distribution Generalization]].\n- **Shortcuts are everywhere.** Captioning models that never look at the image, X-ray models that read the hospital tag instead of the lungs, language models that latch onto the last sentence of a passage.\n- **Why shortcuts happen.** Networks follow the *path of least resistance*: if a simple feature explains the training data, they take it. This is an [[Inductive Bias]] of the model plus dataset, not a bug in one network.\n- **Biology does it too.** Rats \"solving\" mazes by smell, students passing exams by rote \u2014 the same gap between *intended* and *actual* learning.\n- **Recommendations.** Test on **out-of-distribution** data, interpret the rule the model actually uses, and design harder benchmarks.\n\n# Strengths\n- Unifies a dozen scattered failure modes under one clear idea.\n- Plain, intuitive framing (the decision-rule ladder) that travels across fields.\n- Practical advice for benchmarking and interpretation.\n\n# Limitations\n- Conceptual, not a new method or theorem \u2014 it names and organises the problem rather than solving it.\n- Mostly vision examples; less depth on language and RL.\n\n# Relation to Other Papers\n- The \"many rules fit the training data, but they differ off-distribution\" point is the *real-world* version of the **[[Memorization]] vs [[Generalization]]** tension grokking studies in miniature.\n- Connects to [[Zhang - Understanding Deep Learning Still Requires Rethinking Generalization]]: if a net can fit *anything*, what it actually fits depends on which rule is easiest \u2014 i.e. its shortcuts.\n- The \"intended vs cheap solution\" framing mirrors **circuit efficiency** in grokking (memorising circuit = shortcut, generalising circuit = intended rule).\n\n# Relevance to Thesis\nModerate\u2013high (conceptual). Grokking is, in a sense, a network **starting on a shortcut (memorisation) and later switching to the intended rule (generalisation)**. Shortcut learning supplies the language for *why* a memorising solution can look perfect yet be wrong, and for why true generalisation must be tested off-distribution \u2014 directly relevant to how we define and measure a successful \"grok.\"\n\n# Key Quotes\n> \"Shortcuts are decision rules that perform well on standard benchmarks but fail to transfer to more challenging testing conditions.\"\n\n> \"Shortcut learning may be a common characteristic of learning systems, biological and artificial alike.\"\n\n# Tags\n#shortcut-learning #generalization #robustness #out-of-distribution #perspective\n\n---\n## Related Notes\n- [[Shortcut Learning]] \u00b7 [[Out-of-Distribution Generalization]] \u00b7 [[Inductive Bias]]\n- [[Memorization]] \u00b7 [[Generalization]] \u00b7 [[The Generalization Puzzle]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Jiang - Network Properties Determine Neural Network Performance.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Jiang - Network Properties Determine Neural Network Performance.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "network-science",
+        "early-prediction",
+        "model-selection"
+      ]
+    },
+    "links": [
+      "Grokking Predictors",
+      "The Nine Predictors|early grokking predictors",
+      "Advani - High-dimensional Dynamics of Generalization Error",
+      "12 - Modern Developments",
+      "Martin - Predicting Trends in Neural Network Quality",
+      "00 - Start Here",
+      "Generalization"
+    ],
+    "content_length": 2610,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Generalization]]\n\n# Jiang \u2014 Network Properties Determine Neural Network Performance\n\n# Citation\nJiang, C., Huang, Z., Pedapati, T., Chen, P.-Y., Sun, Y., & Gao, J. (2024). *Network properties determine neural network performance.* Nature Communications 15:5718.\n\n# The Gist (Plain Words)\nTreat a training network as a graph and you can predict its final performance from just the early part of training \u2014 no need to wait for the run to finish.\n\n# Research Question\nCan a **network-science** view of the weights \u2014 modelling SGD as edge dynamics on a graph \u2014 yield a metric that predicts a model's downstream generalisation from **early training only**?\n\n# Methodology\nMapped performance to the **network characteristics of the line graph** governed by the edge dynamics of SGD differential equations; derived a **neural capacitance** metric. Used network-reduction to make it tractable. Evaluated on **17 pretrained ImageNet models \u00d7 5 datasets** and a NAS benchmark.\n\n# Key Findings\n- Neural capacitance predicts generalisation and supports **model selection using only early training results**.\n- More efficient than state-of-the-art model-selection methods.\n- Microscopic (edge-level) dynamics carry predictive structure that macroscopic metrics miss.\n\n# Strengths\n- Establishes the **early-training-predicts-final-performance** paradigm \u2014 the same logic as grokking early-warning signals.\n- Principled link between optimisation dynamics and a computable graph metric.\n\n# Limitations\n- Transfer-learning / fine-tuning model-selection setting, not grokking dynamics.\n- Vision models; algorithmic-task grokking untested.\n- Line-graph computation can be heavy without reduction.\n\n# Relation to Other Papers\n- Conceptual sibling of [[Martin - Predicting Trends in Neural Network Quality]] (predict quality cheaply) and of [[The Nine Predictors|early grokking predictors]].\n- Dynamics-from-SGD framing relates to [[Advani - High-dimensional Dynamics of Generalization Error]].\n\n# Relevance to Thesis\nModerate. Methodological precedent for early prediction and for using a single derived scalar as a generalisation forecaster; a candidate idea for novel predictors.\n\n# Key Quotes\n> \"a neural capacitance metric to universally capture a model\u2019s generalization capability ... and predict model performance using only early training results.\"\n\n# Tags\n#network-science #early-prediction #model-selection #generalization\n\n---\n## Related Notes\n- [[Generalization]] \u00b7 [[Grokking Predictors]] \u00b7 [[Martin - Predicting Trends in Neural Network Quality]] \u00b7 [[12 - Modern Developments]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Li - Representations and Generalization in Artificial and Brain Neural Networks.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Li - Representations and Generalization in Artificial and Brain Neural Networks.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "representations",
+        "neural-manifolds",
+        "feature-learning",
+        "neuroscience"
+      ]
+    },
+    "links": [
+      "Neural Manifolds",
+      "Canatar - Spectral Bias and Task-Model Alignment",
+      "Weight Decay|weight-norm regularisation",
+      "Feature Learning",
+      "Papyan - Prevalence of Neural Collapse",
+      "Neural Collapse",
+      "10 - Mechanistic Explanations and Circuit Formation",
+      "Neural Manifolds|neural-manifold geometry",
+      "Xu - Dynamics in Deep Classifiers with the Square Loss",
+      "00 - Start Here"
+    ],
+    "content_length": 2763,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Neural Manifolds]] \u00b7 [[Feature Learning]]\n\n# Li \u2014 Representations and Generalization in Artificial and Brain Neural Networks\n\n# Citation\nLi, Q., Sorscher, B., & Sompolinsky, H. (2024). *Representations and generalization in artificial and brain neural networks.* PNAS (Perspective).\n\n# The Gist (Plain Words)\nLinks how well a network generalises to the *shape* of its internal representations, and shows the same geometric ideas apply to both artificial networks and real brains.\n\n# Research Question\nWhat links a network's **representational geometry** to its **generalisation**, in both artificial and biological networks, and how does **[[Feature Learning]]** (especially in the thermodynamic limit) produce good representations?\n\n# Methodology\nPerspective/synthesis introducing two hypotheses: (1) **[[Neural Manifolds|neural-manifold geometry]]** (dimension, radius) are powerful **order parameters** linking substrate to generalisation; (2) **thermodynamic-limit theory of wide-network learning** gives mechanistic insight into how representations form. Reviews visual-object-recognition geometry and learning dynamics.\n\n# Key Findings\n- Manifold **dimension/radius** predict few-shot generalisation capacity.\n- **Feature-learning** theory (beyond lazy/NTK) explains how desired geometries arise, including the role of **[[Weight Decay|weight-norm regularisation]]**, architecture, and hyperparameters.\n- Connects representational drift and learning dynamics across ML and neuroscience.\n\n# Strengths\n- Unifying, cross-disciplinary order-parameter framework.\n- Emphasises **feature learning** as the key to real generalisation \u2014 exactly what grokking exhibits.\n\n# Limitations\n- Perspective, not a single experiment; breadth over depth.\n- Geometry-to-grokking link is suggested, not demonstrated.\n\n# Relation to Other Papers\n- Argues beyond the lazy-regime limits of [[Canatar - Spectral Bias and Task-Model Alignment]].\n- Manifold tightening connects to [[Neural Collapse]] ([[Papyan - Prevalence of Neural Collapse]]).\n- Weight-norm/geometry view aligns with [[Xu - Dynamics in Deep Classifiers with the Square Loss]].\n\n# Relevance to Thesis\nModerate\u2013high. Provides **geometric order parameters** (manifold dimension/radius) as candidate grokking predictors and frames grokking as a feature-learning/geometry event.\n\n# Key Quotes\n> \"the geometric properties of the neural manifolds ... are powerful order parameters. They link the neural substrate to the generalization capabilities.\"\n\n# Tags\n#representations #neural-manifolds #feature-learning #neuroscience #geometry\n\n---\n## Related Notes\n- [[Neural Manifolds]] \u00b7 [[Feature Learning]] \u00b7 [[Neural Collapse]] \u00b7 [[10 - Mechanistic Explanations and Circuit Formation]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Martin - Predicting Trends in Neural Network Quality.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Martin - Predicting Trends in Neural Network Quality.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "spectral",
+        "rmt",
+        "predictors",
+        "htsr"
+      ]
+    },
+    "links": [
+      "Random Matrix Theory",
+      "Anti-Grokking",
+      "Advani - High-dimensional Dynamics of Generalization Error",
+      "Mei - Generalization Error of Random Features Regression",
+      "The Nine Predictors",
+      "Heavy-Tailed Self-Regularization",
+      "00 - Start Here"
+    ],
+    "content_length": 2744,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Heavy-Tailed Self-Regularization]]\n\n# Martin \u2014 Predicting Trends in Neural Network Quality\n\n# Citation\nMartin, C. H., Peng, T. (Serena), & Mahoney, M. W. (2021). *Predicting trends in the quality of state-of-the-art neural networks without access to training or testing data.* Nature Communications 12:4122.\n\n# The Gist (Plain Words)\nYou can rank how well-trained a network is purely from the statistics of its weights \u2014 no test data required \u2014 using a heavy-tail measure called alpha.\n\n# Research Question\nCan you predict the **quality/generalisation** of a trained network using **only its weights** \u2014 no training data, no test data, no labels?\n\n# Methodology\nMeta-analysis of **hundreds of publicly available pretrained models**. Compared **norm-based** capacity metrics against **power-law (heavy-tailed) spectral** metrics from the **Theory of Heavy-Tailed Self-Regularization (HTSR)**: fit the eigenvalue spectrum of each weight matrix to a power law and read its exponent **\u03b1**. (Basis of the **WeightWatcher** library.)\n\n# Key Findings\n- Norm metrics correlate with test accuracy for well-trained models but **cannot distinguish well- vs poorly-trained** models.\n- **Power-law/HTSR metrics do much better** \u2014 quantitatively among well-trained series, qualitatively for well vs poorly trained.\n- Weight spectra carry **data-free** signal about training quality and hidden problems.\n\n# Strengths\n- Massive empirical base; practical, data-free diagnostics.\n- Provides the theoretical and software foundation (WeightWatcher) for two thesis predictors.\n\n# Limitations\n- Vision/standard-architecture focus; not grokking-specific.\n- \u03b1 fitting is sensitive to layer shape and fitting procedure.\n- Correlational, not causal.\n\n# Relation to Other Papers\n- Foundation of [[Heavy-Tailed Self-Regularization]] \u2192 the **HTSR Alpha** and **Correlation Traps** entries in [[The Nine Predictors]].\n- Spectral viewpoint shared with [[Advani - High-dimensional Dynamics of Generalization Error]], [[Mei - Generalization Error of Random Features Regression]] via [[Random Matrix Theory]].\n- Underpins the [[Anti-Grokking]] detector (Prakash & Martin 2025).\n\n# Relevance to Thesis\nVery high. Direct source of HTSR Alpha and Correlation Traps; the WeightWatcher tooling is in the thesis software stack.\n\n# Key Quotes\n> \"power law based metrics can do much better\u2014quantitatively better at discriminating among series of well-trained models ... and qualitatively better at discriminating well-trained versus poorly trained models.\"\n\n# Tags\n#spectral #rmt #htsr #predictors #weightwatcher\n\n---\n## Related Notes\n- [[Heavy-Tailed Self-Regularization]] \u00b7 [[Random Matrix Theory]] \u00b7 [[Anti-Grokking]] \u00b7 [[The Nine Predictors]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Mei - A Mean Field View of Two-Layer Neural Networks.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Mei - A Mean Field View of Two-Layer Neural Networks.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "mean-field",
+        "dynamics",
+        "feature-learning",
+        "theory",
+        "landscape"
+      ]
+    },
+    "links": [
+      "Mean-Field Limit",
+      "Canatar - Spectral Bias and Task-Model Alignment",
+      "Feature Learning",
+      "Advani - High-dimensional Dynamics of Generalization Error",
+      "Li - Representations and Generalization in Artificial and Brain Neural Networks",
+      "00 - Start Here",
+      "Neural Tangent Kernel",
+      "Neural Tangent Kernel|NTK"
+    ],
+    "content_length": 2869,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Mean-Field Limit]] \u00b7 [[Feature Learning]]\n\n# Mei \u2014 A Mean Field View of the Landscape of Two-Layer Neural Networks\n\n# Citation\nMei, S., Montanari, A., & Nguyen, P.-M. (2018). *A mean field view of the landscape of two-layer neural networks.* PNAS / arXiv:1804.06561.\n\n# The Gist (Plain Words)\nFor very wide two-layer networks, training can be rewritten as a single clean, flowing equation \u2014 and that equation provably reaches near-perfect solutions.\n\n# Research Question\nDoes **SGD on two-layer networks** converge to a global optimum of the (non-convex) risk, and *why* do the solutions it reaches generalize well?\n\n# Methodology\nTook the **mean-field scaling limit** (infinitely many hidden units, weights as a probability distribution). Proved SGD dynamics is captured by a **non-linear PDE \u2014 \"distributional dynamics\" (DD)**. Analysed specific examples; proved convergence of noisy SGD.\n\n# Key Findings\n- In the mean-field limit, SGD = **gradient flow on a distribution of neurons** governed by a PDE.\n- For several cases, DD proves convergence to **near-ideal generalization error**, \"averaging out\" landscape complexity.\n- A rigorous **feature-learning (rich) regime** \u2014 distinct from the lazy/[[Neural Tangent Kernel|NTK]] limit where features are frozen.\n\n# Strengths\n- Rigorous global-convergence results for a non-convex problem.\n- Provides the mathematical home of the **rich / feature-learning** regime that grokking requires.\n\n# Limitations\n- Two-layer, infinite-width idealisation; finite-width corrections nontrivial.\n- Describes convergence, not the *delayed* (plateau) phenomenology of grokking.\n\n# Relation to Other Papers\n- The **rich-regime counterpart** to the lazy-regime kernel theory of [[Canatar - Spectral Bias and Task-Model Alignment]]; together they frame the **lazy vs feature-learning** dichotomy ([[Feature Learning]]).\n- Distributional-dynamics view complements the RMT training dynamics of [[Advani - High-dimensional Dynamics of Generalization Error]] and the geometry of [[Li - Representations and Generalization in Artificial and Brain Neural Networks]].\n\n# Relevance to Thesis\nModerate. Supplies the theory of **how feature-learning solutions form under SGD** \u2014 the regime in which grokking lives \u2014 and a candidate language (distributional dynamics) for modelling the plateau-to-grok transition.\n\n# Key Quotes\n> \"in a suitable scaling limit \u2013 SGD dynamics is captured by a certain non-linear partial differential equation that we call distributional dynamics ... DD can be used to prove convergence of SGD to networks with nearly-ideal generalization error.\"\n\n# Tags\n#mean-field #dynamics #feature-learning #landscape #sgd #theory\n\n---\n## Related Notes\n- [[Mean-Field Limit]] \u00b7 [[Feature Learning]] \u00b7 [[Neural Tangent Kernel]] \u00b7 [[Advani - High-dimensional Dynamics of Generalization Error]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Mei - Generalization Error of Random Features Regression.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Mei - Generalization Error of Random Features Regression.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "double-descent",
+        "theory",
+        "rmt",
+        "interpolation"
+      ]
+    },
+    "links": [
+      "Feature Learning",
+      "Interpolation Threshold",
+      "Rocks - Memorizing Without Overfitting",
+      "Double Descent",
+      "Spigler - A Jamming Transition Affects Generalization",
+      "07 - Double Descent",
+      "Advani - High-dimensional Dynamics of Generalization Error",
+      "00 - Start Here"
+    ],
+    "content_length": 2568,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Double Descent]]\n\n# Mei \u2014 Generalization Error of Random Features Regression\n\n# Citation\nMei, S., & Montanari, A. (2019/2020). *The generalization error of random features regression: Precise asymptotics and the double descent curve.* arXiv:1908.05355 [math.ST].\n\n# The Gist (Plain Words)\nThe first exactly-solvable model that reproduces the whole double-descent curve, proving it is a general feature of high-dimensional fitting, not a deep-learning quirk.\n\n# Research Question\nCan a **fully tractable** model reproduce the entire **[[Double Descent]]** curve, proving it is a general high-dimensional phenomenon rather than a deep-learning quirk?\n\n# Methodology\nRidge regression on **N random features** $\\sigma(w_a^\\top x)$ over the sphere \u2014 equivalently a two-layer net with random first layer. Computed **precise asymptotics** of test error in the limit $N, n, d \\to \\infty$ with $N/d, n/d$ fixed.\n\n# Key Findings\n- Derived exact test-error asymptotics capturing **all** features of double descent **without ad-hoc misspecification**.\n- Above a critical SNR, the **minimum test error is achieved by extreme overparameterized interpolators** (parameters \u226b samples, zero training error).\n- Double descent appears even in this simple random-features/linear setting.\n\n# Strengths\n- First analytically exact, end-to-end model of the curve \u2014 a theoretical landmark.\n- Cleanly separates the interpolation peak from the second descent.\n\n# Limitations\n- Random (fixed) first layer \u2192 **no [[Feature Learning]]**; cannot model grokking's representation change.\n- Asymptotic, Gaussian-style assumptions.\n\n# Relation to Other Papers\n- Rigorous core of the [[Double Descent]] story; complements bias/variance view of [[Rocks - Memorizing Without Overfitting]] and RMT dynamics of [[Advani - High-dimensional Dynamics of Generalization Error]].\n- Physical-transition counterpart: [[Spigler - A Jamming Transition Affects Generalization]].\n\n# Relevance to Thesis\nModerate\u2013high (foundational). Establishes the static phenomenon grokking mirrors over training time; grounds the \"interpolators can generalise best\" premise.\n\n# Key Quotes\n> \"minimum test error is achieved by extremely overparametrized interpolators, i.e., networks that have a number of parameters much larger than the sample size, and vanishing training error.\"\n\n# Tags\n#double-descent #theory #random-features #rmt #interpolation\n\n---\n## Related Notes\n- [[Double Descent]] \u00b7 [[Interpolation Threshold]] \u00b7 [[Rocks - Memorizing Without Overfitting]] \u00b7 [[07 - Double Descent]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Mixon - Neural Collapse with Unconstrained Features.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Mixon - Neural Collapse with Unconstrained Features.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "neural-collapse",
+        "theory",
+        "geometry"
+      ]
+    },
+    "links": [
+      "00 - Start Here",
+      "Xu - Dynamics in Deep Classifiers with the Square Loss",
+      "Papyan - Prevalence of Neural Collapse",
+      "Neural Collapse"
+    ],
+    "content_length": 2380,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Neural Collapse]]\n\n# Mixon \u2014 Neural Collapse with Unconstrained Features\n\n# Citation\nMixon, D. G., Parshall, H., & Pi, J. (2020). *Neural collapse with unconstrained features.* arXiv:2011.11619 [cs.LG].\n\n# The Gist (Plain Words)\nStrip a network down to just its last layer and you can prove the tidy \"neural collapse\" geometry is the best possible solution \u2014 which is why training keeps drifting toward it.\n\n# Research Question\nWhy does **[[Neural Collapse]]** emerge? Can a minimal, tractable model reproduce it and explain it via the loss landscape?\n\n# Methodology\nProposed the **unconstrained features model**: treat last-layer features as free variables (drop the network that produces them) and study the landscape of empirical risk over (features, classifier). Analysed minimisers and showed neural collapse arises empirically and structurally.\n\n# Key Findings\n- The **Simplex ETF** collapsed geometry is the (essentially global) **minimiser** of the unconstrained-features risk.\n- Provides a landscape-level explanation: the dynamics are *drawn* to the collapsed configuration.\n- Confirms neural collapse is not an architecture artefact but a property of the optimisation objective.\n\n# Strengths\n- Clean, analyzable model that isolates the cause of collapse.\n- Foundational for the large \"unconstrained features\" theory literature.\n\n# Limitations\n- Idealised: ignores the feature map / real network constraints.\n- Balanced-class assumption; square/CE specifics.\n- Static minimiser analysis, not training dynamics.\n\n# Relation to Other Papers\n- Theoretical companion to the empirical [[Papyan - Prevalence of Neural Collapse]].\n- Its dynamic/low-rank extension is [[Xu - Dynamics in Deep Classifiers with the Square Loss]].\n\n# Relevance to Thesis\nModerate. Explains *why* terminal-phase structure forms \u2014 relevant to using collapse geometry as a grokking order parameter, and to the \"generalising solution is special\" argument.\n\n# Key Quotes\n> \"We propose a simple unconstrained features model in which neural collapse also emerges empirically ... we provide some explanation ... in terms of the landscape of empirical risk.\"\n\n# Tags\n#neural-collapse #theory #geometry #terminal-phase\n\n---\n## Related Notes\n- [[Neural Collapse]] \u00b7 [[Papyan - Prevalence of Neural Collapse]] \u00b7 [[Xu - Dynamics in Deep Classifiers with the Square Loss]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Nanda - Progress Measures for Grokking via Mechanistic Interpretability.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Nanda - Progress Measures for Grokking via Mechanistic Interpretability.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "grokking",
+        "mechanistic-interpretability",
+        "circuits",
+        "fourier",
+        "primary-evidence"
+      ]
+    },
+    "links": [
+      "Circuit Formation",
+      "Grokking",
+      "Grokking Predictors|grokking-predictor literature",
+      "Mechanistic Interpretability",
+      "Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets",
+      "Pomarico - Transfer Entropy and O-Information to Detect Grokking",
+      "Papyan - Prevalence of Neural Collapse",
+      "Weight Decay|weight-decay",
+      "Grokking Predictors",
+      "10 - Mechanistic Explanations and Circuit Formation",
+      "Mechanistic Explanations",
+      "Xu - Dynamics in Deep Classifiers with the Square Loss",
+      "Fourier Features",
+      "Grokking Predictors|predictor research",
+      "Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets|Power et al. (2022)",
+      "Varma - Explaining Grokking Through Circuit Efficiency",
+      "00 - Start Here"
+    ],
+    "content_length": 5510,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Mechanistic Interpretability]] \u00b7 [[Circuit Formation]] \u00b7 [[Grokking]]\n\n# Nanda \u2014 Progress Measures for Grokking via Mechanistic Interpretability\n\n# Citation\nNanda, N., Lawrence, L., Chan, T., MacDiarmid, T., & Driscoll, C. (2023). *Progress measures for grokking via mechanistic interpretability.* In *Proceedings of the International Conference on Learning Representations (ICLR 2023)*. arXiv:2301.05217.\n\n# The Gist (Plain Words)\nThis paper opened the \"black box\" of the grokked transformer. Researchers reverse-engineered the trained network and found it had secretly learned to do clock-math by treating numbers as angles on a clock face, adding those angles using trigonometry, and reading off the result. They also defined \"progress measures\" \u2014 internal metrics that rise during the plateau *before* test accuracy does \u2014 the conceptual ancestor of the [[Grokking Predictors|grokking-predictor literature]].\n\n# Research Question\nWhat algorithm does a transformer actually implement after grokking on modular arithmetic \u2014 and can we build **internal \"progress measures\"** that track the formation of this algorithm during the silent plateau, *before* test accuracy moves?\n\n# Methodology\n- **Architecture:** same single-layer transformer as [[Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets|Power et al. (2022)]], trained on $(a+b)\\bmod 97$.\n- **Reverse-engineering:** used weight-visualisation and activation patching (causal tracing) to read out the algorithm embedded in trained weights.\n- **Progress measures:** defined multiple internal quantities \u2014 e.g. \"excluded loss\" (loss on a restricted Fourier frequency set), \"Fourier multiplicity,\" cosine similarity of weights with the predicted circuit structure \u2014 and tracked them across the training run.\n\n# Key Findings\n1. **The algorithm is Fourier/trig-based.** The grokked transformer implements $(a+b)\\bmod p$ by:\n   - Embedding $a$ and $b$ as rotations (points on a circle), using a handful of key frequencies $\\omega_k = 2\\pi k / p$.\n   - Adding the angle representations.\n   - Reading off the modular sum from the combined rotation using trig identities: $\\cos(\\omega_k (a+b)) = \\cos(\\omega_k a)\\cos(\\omega_k b) - \\sin(\\omega_k a)\\sin(\\omega_k b)$.\n   - See [[Fourier Features]] for the conceptual explanation.\n2. **The plateau is active.** Progress measures rise *monotonically* during the flat plateau \u2014 the circuit is under construction the whole time, invisible in loss or accuracy.\n3. **Generalisation is abrupt.** Once progress measures cross a threshold, test accuracy follows in a sudden jump.\n4. **The mechanism is interpretable and exact** \u2014 the circuit is not a vague \"learned feature\" but a specific, human-readable computation.\n\n# Strengths\n- First complete reverse-engineering of a grokked model.\n- Progress measures are the conceptual prototype for all subsequent [[Grokking Predictors|predictor research]].\n- Mechanistic account unifies [[Weight Decay|weight-decay]] and [[Circuit Formation]] explanations.\n- Open-sourced weights and code; highly reproducible.\n\n# Limitations\n- Only $(a+b)\\bmod p$; whether other tasks produce interpretable circuits is open.\n- Progress measures are **task-specific** (they exploit knowledge of the Fourier circuit structure); the thesis tests whether more general, task-agnostic predictors can do as well.\n- Small transformer; scalability is unknown.\n\n# Relation to Other Papers\n- **Discovery:** [[Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets]] gave the phenomenon to explain.\n- **Why it works:** [[Varma - Explaining Grokking Through Circuit Efficiency]] explains *why* the Fourier circuit wins via lower weight norm.\n- **Information view:** [[Pomarico - Transfer Entropy and O-Information to Detect Grokking]] sees the same transition in tensor networks via information theory.\n- **Terminal-phase geometry:** [[Papyan - Prevalence of Neural Collapse]] and [[Xu - Dynamics in Deep Classifiers with the Square Loss]] show the structure-forming-after-zero-loss pattern Nanda et al. observe.\n\n# Relevance to Thesis\n**Central.** This paper provides:\n1. The **canonical grokking setup** the thesis replicates.\n2. The **mechanistic account** that grounds several predictors (Commutator Defect tracks Hessian geometry of the circuit; Spectral Signature tracks early-spectrum precursors).\n3. The **validation baseline**: the thesis must reproduce Nanda et al.'s grokking before testing any predictor.\n\n# Key Quotes\n> \"We find a natural, post-hoc explanation of the mechanism behind grokking via a beautiful algorithm that the network has learned: treating each element as a vector in a 2D Fourier basis.\"\n\n> \"We find progress measures which are tracked monotonically \u2014 they are a precise notion of 'how close is the network to having learned the algorithm.'\"\n\n> \"We hypothesise that grokking occurs when a generalising circuit and a memorising circuit are both present, and the generalising circuit becomes more efficient.\"\n\n# Tags\n#grokking #mechanistic-interpretability #fourier-circuits #progress-measures #primary-evidence\n\n---\n## Related Notes\n- [[Mechanistic Interpretability]] \u00b7 [[Circuit Formation]] \u00b7 [[Fourier Features]] \u00b7 [[Grokking Predictors]]\n- [[10 - Mechanistic Explanations and Circuit Formation]] \u00b7 [[Mechanistic Explanations]]\n- [[Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets]] \u00b7 [[Varma - Explaining Grokking Through Circuit Efficiency]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Papyan - Prevalence of Neural Collapse.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Papyan - Prevalence of Neural Collapse.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "neural-collapse",
+        "terminal-phase",
+        "primary-evidence"
+      ]
+    },
+    "links": [
+      "Circuit Formation",
+      "Neural Collapse",
+      "10 - Mechanistic Explanations and Circuit Formation",
+      "Mixon - Neural Collapse with Unconstrained Features",
+      "Xu - Dynamics in Deep Classifiers with the Square Loss",
+      "00 - Start Here"
+    ],
+    "content_length": 2615,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Neural Collapse]]\n\n# Papyan \u2014 Prevalence of Neural Collapse\n\n# Citation\nPapyan, V., Han, X. Y., & Donoho, D. L. (2020). *Prevalence of Neural Collapse during the terminal phase of deep learning training.* PNAS 117(40).\n\n# The Gist (Plain Words)\nAcross many datasets and architectures, trained networks all settle into the same neat, symmetric arrangement of their classes \u2014 and this structure keeps forming even after the error has already hit zero.\n\n# Research Question\nWhat happens to a network's last-layer features and classifier when training continues **past zero error**, into the **Terminal Phase of Training (TPT)**?\n\n# Methodology\nDirect measurements across **3 prototypical architectures \u00d7 7 canonical datasets**, tracking last-layer activations and classifier weights throughout TPT.\n\n# Key Findings\nDiscovered **Neural Collapse**, four coupled phenomena: **(NC1)** within-class variability \u2192 0; **(NC2)** class means \u2192 Simplex **Equiangular Tight Frame**; **(NC3)** classifier \u2192 class means (self-duality); **(NC4)** decision \u2192 nearest class-centre. The induced symmetric geometry improves **generalisation, robustness, and interpretability**.\n\n# Strengths\n- Landmark empirical regularity; extremely reproducible across settings.\n- Establishes that **structure keeps forming after zero error** \u2014 the core idea grokking's plateau depends on.\n\n# Limitations\n- Last-layer / classification focus; not algorithmic-task grokking.\n- Describes a phenomenon; causal mechanism comes from follow-ups ([[Mixon - Neural Collapse with Unconstrained Features]], [[Xu - Dynamics in Deep Classifiers with the Square Loss]]).\n\n# Relation to Other Papers\n- Empirical anchor; explained by [[Mixon - Neural Collapse with Unconstrained Features]] and dynamically by [[Xu - Dynamics in Deep Classifiers with the Square Loss]].\n- Terminal-phase structure formation parallels [[Circuit Formation]] in grokking.\n\n# Relevance to Thesis\nHigh (conceptual). The TPT/\"learning continues after zero train error\" insight is the static backbone of the grokking plateau; NC metrics are candidate order parameters.\n\n# Key Quotes\n> \"a pervasive inductive bias we call Neural Collapse ... The symmetric and very simple geometry induced by the TPT confers important benefits, including better generalization performance, better robustness, and better interpretability.\"\n\n# Tags\n#neural-collapse #terminal-phase #geometry #primary-evidence\n\n---\n## Related Notes\n- [[Neural Collapse]] \u00b7 [[10 - Mechanistic Explanations and Circuit Formation]] \u00b7 [[Xu - Dynamics in Deep Classifiers with the Square Loss]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Pomarico - Transfer Entropy and O-Information to Detect Grokking.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Pomarico - Transfer Entropy and O-Information to Detect Grokking.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "grokking",
+        "information-theory",
+        "tensor-networks",
+        "primary-evidence"
+      ]
+    },
+    "links": [
+      "Grokking",
+      "Information-Theoretic Measures",
+      "The Nine Predictors|predictors",
+      "Advani - High-dimensional Dynamics of Generalization Error",
+      "10 - Mechanistic Explanations and Circuit Formation",
+      "Spigler - A Jamming Transition Affects Generalization",
+      "Biroli - Dynamical Regimes of Diffusion Models",
+      "Anti-Grokking",
+      "00 - Start Here",
+      "Phase Transition"
+    ],
+    "content_length": 3317,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Grokking]] \u00b7 [[Information-Theoretic Measures]]\n\n# Pomarico \u2014 Transfer Entropy and O-Information to Detect Grokking\n\n# Citation\nPomarico, D., Cilli, R., Monaco, A., et al. (2025). *Transfer entropy and O-information to detect grokking in tensor network multi-class classification problems.* arXiv:2507.23346 [quant-ph].\n\n# The Gist (Plain Words)\nGrokking isn't only a neural-network thing. In a very different model (tensor networks), the same memorise-then-suddenly-understand jump appears, and it lines up with a sharp change in information measures.\n\n# Research Question\nCan grokking be observed and **detected with information-theoretic order parameters** in a non-neural, quantum-inspired model (Matrix Product State classifiers), and what distinguishes a grokking model from a merely overfitted one?\n\n# Methodology\nTrained **MPS (tensor-network) classifiers** on three-class problems using Fashion-MNIST and hyperspectral satellite imagery. Tracked **entanglement entropy**, **local magnetization**, and accuracy across training sweeps. Applied **transfer entropy** (causal dependencies between label-specific quantum masks) and **O-information** (synergy vs redundancy among class outputs).\n\n# Key Findings\n- Grokking on Fashion-MNIST **coincides with a sharp entanglement transition** and a **peak in redundant information** (O-information shifts synergistic\u2192redundant).\n- The **overfitted** hyperspectral model **retains synergistic, disordered** behaviour \u2014 never makes the transition.\n- A \"competition arises between fast, memorizing modes and slower, generalizing modes\" in over-parameterized regimes.\n\n# Strengths\n- Rare **direct, instrumented** observation of grokking outside neural nets \u2014 strong evidence of substrate-independence.\n- Provides concrete, computable **order parameters** for the transition.\n- Clean contrast between grokking vs non-grokking runs.\n\n# Limitations\n- Tensor-network setting differs from the transformer/algorithmic-task canon; transfer to transformers is assumed, not shown.\n- Two datasets only; small class count (3).\n- Information estimators can be sensitive to discretisation/sample size.\n\n# Relation to Other Papers\n- Provides the **Higher-Order MI** family of [[The Nine Predictors|predictors]] and motivates information-based detection.\n- Echoes the slow/fast-mode competition of [[Advani - High-dimensional Dynamics of Generalization Error]].\n- Its entanglement transition is a concrete instance of the [[Phase Transition]] framework shared with [[Spigler - A Jamming Transition Affects Generalization]] and [[Biroli - Dynamical Regimes of Diffusion Models]].\n\n# Relevance to Thesis\nHigh. Direct evidence that grokking is a genuine internal reorganisation; supplies an information-theoretic predictor and the synergy\u2192redundancy order parameter for the benchmark.\n\n# Key Quotes\n> \"grokking in the fashion MNIST task coincides with a sharp entanglement transition and a peak in redundant information, whereas the overfitted hyperspectral model retains synergistic, disordered behavior.\"\n\n# Tags\n#grokking #information-theory #tensor-networks #phase-transition #primary-evidence\n\n---\n## Related Notes\n- [[Information-Theoretic Measures]] \u00b7 [[Grokking]] \u00b7 [[Anti-Grokking]] \u00b7 [[10 - Mechanistic Explanations and Circuit Formation]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "grokking",
+        "founding-paper",
+        "primary-evidence",
+        "algorithmic-tasks"
+      ]
+    },
+    "links": [
+      "Grokking",
+      "Pomarico - Transfer Entropy and O-Information to Detect Grokking",
+      "Weight Decay",
+      "Thesis Proposal Summary|thesis",
+      "Phase Transition",
+      "Neural Collapse",
+      "04 - Core Experimental Setup",
+      "Nanda - Progress Measures for Grokking via Mechanistic Interpretability",
+      "00 - Start Here",
+      "02 - The Grokking Training Dynamics",
+      "Generalization",
+      "Weight Decay|weight decay",
+      "Varma - Explaining Grokking Through Circuit Efficiency",
+      "Modular Arithmetic",
+      "The Nine Predictors",
+      "Transformer",
+      "01 - What Is Grokking",
+      "Double Descent",
+      "Memorization",
+      "Transformer|transformers"
+    ],
+    "content_length": 5004,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Grokking]] \u00b7 [[Memorization]] \u00b7 [[Generalization]]\n\n# Power \u2014 Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets\n\n# Citation\nPower, A., Burda, Y., Edwards, H., Babuschkin, I., & Misra, V. (2022). *Grokking: Generalisation beyond overfitting on small algorithmic datasets.* arXiv:2201.02177 [cs.LG].\n\n# The Gist (Plain Words)\nThe paper that named the phenomenon. A tiny transformer trained to do clock-math first memorises all the answers, then sits frozen for a very long time, and then \u2014 out of nowhere \u2014 suddenly learns the actual rule and aces every unseen question. They called this \"grokking.\" Everything in this vault descends from this observation.\n\n# Research Question\nWhen training small [[Transformer|transformers]] on small **algorithmic datasets** (modular arithmetic, permutations, etc.), does test accuracy ever improve after the model has already reached 100% training accuracy \u2014 and if so, how and why?\n\n# Methodology\n- **Architecture:** single-layer and two-layer transformers (\u2264 250K parameters).\n- **Tasks:** modular arithmetic ($(a \\bmod p)$, $(a \\times b) \\bmod p$ for prime $p \\in \\{59, 97, 113\\}$), permutation composition, others.\n- **Split:** ~30% of all input pairs as training data, ~70% as test.\n- **Optimiser:** AdamW with [[Weight Decay|weight decay]] (key variable swept).\n- **Training budget:** $10^4$\u2013$10^5$ steps, far past zero training loss.\n- Tracked train and test accuracy/loss at every step.\n\n# Key Findings\n1. **The phenomenon is real and reproducible.** After reaching 100% training accuracy, test accuracy stays near chance for thousands of steps \u2014 then jumps, often within hundreds of steps, to near 100%. The delay can be 100\u00d7 or more the time to memorisation.\n2. **Weight decay is the main lever.** Without weight decay the generalisation jump is absent or hugely delayed; larger weight decay shortens the plateau.\n3. **Algorithmic structure matters.** Tasks with an exact underlying rule (e.g. modular addition) grok reliably; less structured tasks grok less cleanly.\n4. **Small train fraction is necessary.** With too large a training set the model generalises immediately (no plateau); with too small a set it may never grok. There is a window.\n5. **The phenomenon is not specific to one architecture** \u2014 observed across depth/width variants of the transformer.\n\n# Strengths\n- First discovery and clear naming of the grokking phenomenon.\n- Clean, reproducible experimental setup that became the canonical benchmark.\n- Systematic sweep of hyperparameters (weight decay, train fraction, task type).\n- Opened an entire research direction.\n\n# Limitations\n- **No mechanism.** Power et al. observe and characterise but do not explain *why* it happens. The mechanism was worked out by Nanda et al. (2023) \u2014 see [[Nanda - Progress Measures for Grokking via Mechanistic Interpretability]].\n- **Algorithmic tasks only.** Whether grokking generalises to vision or language is left open.\n- **No predictor.** No internal signal is provided to forecast when grokking will arrive \u2014 the gap the [[Thesis Proposal Summary|thesis]] fills.\n\n# Relation to Other Papers\n- **Mechanism:** [[Nanda - Progress Measures for Grokking via Mechanistic Interpretability]] reverse-engineers the Fourier circuit the grokked network runs.\n- **Cause:** [[Varma - Explaining Grokking Through Circuit Efficiency]] gives the circuit-efficiency explanation of *why* grokking eventually wins.\n- **Foundations:** most of the vault ([[Double Descent]], [[Phase Transition]], [[Neural Collapse]]) provides the theoretical skeleton the observation implies.\n- **Beyond transformers:** [[Pomarico - Transfer Entropy and O-Information to Detect Grokking]] shows the same memorise\u2192generalise jump in tensor networks.\n- **Prediction:** [[The Nine Predictors]] is the thesis's response to the lack of any predictor in Power et al.\n\n# Relevance to Thesis\n**Central.** This paper is the primary observation the thesis builds on. The thesis takes the exact setup of Power et al. (modular arithmetic, small transformer, AdamW with weight decay, 30% split) as its benchmark environment, then asks: \"can we forecast *when* grokking will arrive?\"\n\n# Key Quotes\n> \"We show that such models undergo a phase transition from memorisation to generalisation, often many thousands of gradient steps after training loss has converged.\"\n\n> \"We call the occurrence of delayed generalisation 'grokking', after the term coined by Robert Heinlein.\"\n\n> \"Regularisation has a large effect on whether grokking occurs.\"\n\n# Tags\n#grokking #founding-paper #modular-arithmetic #weight-decay #phase-transition #primary-evidence\n\n---\n## Related Notes\n- [[Grokking]] \u00b7 [[01 - What Is Grokking]] \u00b7 [[02 - The Grokking Training Dynamics]] \u00b7 [[04 - Core Experimental Setup]]\n- [[Weight Decay]] \u00b7 [[Modular Arithmetic]] \u00b7 [[Transformer]]\n- [[Nanda - Progress Measures for Grokking via Mechanistic Interpretability]] \u00b7 [[Varma - Explaining Grokking Through Circuit Efficiency]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Rocks - Memorizing Without Overfitting.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Rocks - Memorizing Without Overfitting.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "double-descent",
+        "bias-variance",
+        "interpolation",
+        "theory"
+      ]
+    },
+    "links": [
+      "Random Matrix Theory",
+      "Bias-Variance Tradeoff",
+      "Advani - High-dimensional Dynamics of Generalization Error",
+      "Double Descent",
+      "Memorization",
+      "05 - Memorization vs Generalization",
+      "00 - Start Here",
+      "Generalization",
+      "Mei - Generalization Error of Random Features Regression"
+    ],
+    "content_length": 2483,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Bias-Variance Tradeoff]] \u00b7 [[Double Descent]]\n\n# Rocks \u2014 Memorizing Without Overfitting\n\n# Citation\nRocks, J. W., & Mehta, P. (2020/2022). *Memorizing without overfitting: Bias, variance, and interpolation in over-parameterized models.* arXiv:2010.13933 [stat.ML].\n\n# The Gist (Plain Words)\nCarefully separates the two sources of error in oversized models and shows they can memorise the training data perfectly yet still not overfit.\n\n# Research Question\nHow do **bias** and **variance** behave in overparameterized models, and why can a model **memorise** the training data yet still **generalise** (\"memorize without overfitting\")?\n\n# Methodology\nStatistical-physics derivation of **analytic bias and variance** in two minimal models: linear regression and two-layer nets with nonlinear data. Disentangled architecture effects from data-sampling effects; related results to [[Random Matrix Theory]].\n\n# Key Findings\n- Increasing parameters drives a **phase transition**: training error \u2192 0 and test error **diverges via variance** at the threshold (bias stays finite).\n- **Beyond** the threshold, both bias and variance **decrease** \u2014 opposite of classical intuition (the second descent).\n- Overparameterized models can **overfit even without noise** and show **bias even when student matches teacher**.\n\n# Strengths\n- Precise, interpretable bias/variance decomposition of the [[Double Descent]] peak.\n- Clarifies the variance origin of the interpolation spike.\n\n# Limitations\n- Minimal models; real deep nets only by analogy.\n- No feature-learning / training-time dynamics.\n\n# Relation to Other Papers\n- Bias/variance complement to [[Mei - Generalization Error of Random Features Regression]] and RMT dynamics of [[Advani - High-dimensional Dynamics of Generalization Error]].\n- \"Memorize without overfitting\" reframes [[Memorization]] vs [[Generalization]].\n\n# Relevance to Thesis\nModerate. Supplies the conceptual vocabulary (variance spike at interpolation; memorisation \u2260 overfitting) that grokking inherits over the time axis.\n\n# Key Quotes\n> \"increasing the number of fit parameters leads to a phase transition where the training error goes to zero and the test error diverges as a result of the variance (while the bias remains finite).\"\n\n# Tags\n#double-descent #bias-variance #interpolation #theory\n\n---\n## Related Notes\n- [[Bias-Variance Tradeoff]] \u00b7 [[Double Descent]] \u00b7 [[Memorization]] \u00b7 [[05 - Memorization vs Generalization]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Sokoli\u0107 - Robust Large Margin Deep Neural Networks.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Sokoli\u0107 - Robust Large Margin Deep Neural Networks.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "margin",
+        "robustness",
+        "generalization-bounds",
+        "theory"
+      ]
+    },
+    "links": [
+      "Papyan - Prevalence of Neural Collapse",
+      "Neural Collapse",
+      "Margin and Robustness",
+      "Xu - Dynamics in Deep Classifiers with the Square Loss",
+      "00 - Start Here",
+      "The Nine Predictors"
+    ],
+    "content_length": 2730,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Margin and Robustness]]\n\n# Sokoli\u0107 \u2014 Robust Large Margin Deep Neural Networks\n\n# Citation\nSokoli\u0107, J., Giryes, R., Sapiro, G., & Rodrigues, M. R. D. (2016/2017). *Robust Large Margin Deep Neural Networks.* IEEE Transactions on Signal Processing; arXiv:1605.08254.\n\n# The Gist (Plain Words)\nNetworks that keep a wide margin and don't overreact to small input changes come with solid guarantees that they will generalise \u2014 no matter how deep they are.\n\n# Research Question\nCan the **generalization error** of a deep network be bounded through its **classification margin**, in a way that does **not** blow up with width or depth?\n\n# Methodology\nBounded generalization error via the **classification margin** combined with the **spectral norm of the network's Jacobian** near the training samples. Architecture-agnostic (feedforward, residual; arbitrary nonlinearities/pooling). Validated on MNIST, CIFAR-10, LaRED, ImageNet.\n\n# Key Findings\n- **A bounded Jacobian spectral norm around the training points is crucial** for good generalization at arbitrary depth/width \u2014 improving on bounds that grow with width or depth.\n- **Batch/weight normalization** are shown to enjoy good generalization properties through this lens.\n- Yields a **novel Jacobian-based regularizer**.\n\n# Strengths\n- Ties generalization to a **computable, local geometric quantity** (margin + input-Jacobian sensitivity).\n- Depth/width-independent bound \u2014 a genuine theoretical advance.\n\n# Limitations\n- Bound, not exact dynamics; not about training-time onset.\n- Vision-classification focus; no grokking/algorithmic tasks.\n\n# Relation to Other Papers\n- Margin viewpoint complements [[Xu - Dynamics in Deep Classifiers with the Square Loss]] (\"which interpolant has large margin generalizes\") and the symmetric-margin geometry of [[Papyan - Prevalence of Neural Collapse]].\n- Input-perturbation robustness underlies the **Dropout-Robustness** predictor in [[The Nine Predictors]].\n- Sensitivity/Jacobian-norm idea connects to sharpness/curvature signals (Commutator Defect).\n\n# Relevance to Thesis\nModerate\u2013high. Provides the **margin/robustness** theory behind a predictor family (robustness to perturbation) and a geometric order-parameter candidate; motivates [[Margin and Robustness]].\n\n# Key Quotes\n> \"a bounded spectral norm of the network's Jacobian matrix in the neighbourhood of the training samples is crucial for a deep neural network of arbitrary depth and width to generalize well.\"\n\n# Tags\n#margin #robustness #generalization-bounds #jacobian #theory\n\n---\n## Related Notes\n- [[Margin and Robustness]] \u00b7 [[Xu - Dynamics in Deep Classifiers with the Square Loss]] \u00b7 [[The Nine Predictors]] \u00b7 [[Neural Collapse]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Spigler - A Jamming Transition Affects Generalization.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Spigler - A Jamming Transition Affects Generalization.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "phase-transition",
+        "jamming",
+        "double-descent",
+        "physics"
+      ]
+    },
+    "links": [
+      "Interpolation Threshold",
+      "Rocks - Memorizing Without Overfitting",
+      "Double Descent",
+      "Biroli - Dynamical Regimes of Diffusion Models",
+      "Jamming Transition",
+      "08 - Phase Transitions in Learning",
+      "00 - Start Here",
+      "Mei - Generalization Error of Random Features Regression"
+    ],
+    "content_length": 2513,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Jamming Transition]]\n\n# Spigler \u2014 A Jamming Transition Affects Generalization\n\n# Citation\nSpigler, S., Geiger, M., d'Ascoli, S., Sagun, L., Biroli, G., & Wyart, M. (2018/2019). *A jamming transition from under- to over-parametrization affects generalization in deep learning.* arXiv:1810.09665 [cs.LG].\n\n# The Gist (Plain Words)\nThe boundary between too-small and too-big networks behaves like sand \"jamming\" into a rigid pile, and test error is worst right at that boundary.\n\n# Research Question\nDoes the under- to over-parameterized boundary behave like a physical **jamming transition**, and how does crossing it shape generalisation?\n\n# Methodology\nStudied generalisation vs network width across the transition; analysed loss-landscape constraints (jamming analogy from granular media), with and without **early stopping**.\n\n# Key Findings\n- The transition is a **[[Jamming Transition]]**: below it, constraints create stable poor minima; above it, abundant flat directions make fitting easy.\n- Generalisation error shows **three phases** vs width: decay \u2192 **cusp at the transition** \u2192 slow decay to an asymptote.\n- The cusp is the [[Double Descent]] peak; **early stopping removes the cusp**, localising overfitting to the transition's neighbourhood.\n\n# Strengths\n- Physical, intuitive account of *why* overparameterized training avoids bad minima.\n- Directly ties the interpolation peak to a known physics transition.\n\n# Limitations\n- Empirical/physical analogy; not fully rigorous for deep nets.\n- Width-axis (static), not training-time dynamics.\n\n# Relation to Other Papers\n- Physics realisation of the [[Interpolation Threshold]] peak from [[Mei - Generalization Error of Random Features Regression]] / [[Rocks - Memorizing Without Overfitting]].\n- Shares authors/lineage with [[Biroli - Dynamical Regimes of Diffusion Models]] (statistical-physics of learning).\n\n# Relevance to Thesis\nModerate. Provides the jamming/landscape intuition for a metastable plateau that \"un-jams\" at grokking; reinforces the phase-transition framing.\n\n# Key Quotes\n> \"a phase transition, analogous to the jamming transition of granular media, delimits the over- and under-parametrized regimes ... the generalization error displays three phases ... where it displays a cusp.\"\n\n# Tags\n#phase-transition #jamming #double-descent #physics #landscape\n\n---\n## Related Notes\n- [[Jamming Transition]] \u00b7 [[Interpolation Threshold]] \u00b7 [[Double Descent]] \u00b7 [[08 - Phase Transitions in Learning]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Varma - Explaining Grokking Through Circuit Efficiency.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Varma - Explaining Grokking Through Circuit Efficiency.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "grokking",
+        "circuit-efficiency",
+        "weight-decay",
+        "regularization",
+        "primary-evidence"
+      ]
+    },
+    "links": [
+      "Grokking",
+      "Mechanistic Interpretability|mechanistic",
+      "Weight Decay",
+      "What Causes Grokking",
+      "Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets",
+      "Grokking Predictors",
+      "Neural Collapse",
+      "Martin - Predicting Trends in Neural Network Quality",
+      "Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets|Power et al. (2022)",
+      "Nanda - Progress Measures for Grokking via Mechanistic Interpretability",
+      "00 - Start Here",
+      "Weight Decay|weight decay",
+      "Competing Theories of Grokking",
+      "Role of Weight Decay",
+      "Generalization|generalising",
+      "Nanda - Progress Measures for Grokking via Mechanistic Interpretability|Nanda et al. (2023)",
+      "Weight Decay|regularisation",
+      "Advani - High-dimensional Dynamics of Generalization Error",
+      "Memorization|memorisation",
+      "The Nine Predictors",
+      "Circuit Formation",
+      "Mechanistic Interpretability",
+      "Anti-Grokking",
+      "Xu - Dynamics in Deep Classifiers with the Square Loss"
+    ],
+    "content_length": 5687,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Circuit Formation]] \u00b7 [[Weight Decay]] \u00b7 [[Grokking]]\n\n# Varma \u2014 Explaining Grokking Through Circuit Efficiency\n\n# Citation\nVarma, V., Shah, R., Kenton, Z., Kram\u00e1r, J., & Kumar, R. (2023). *Explaining grokking through circuit efficiency.* arXiv:2309.02390 [cs.LG].\n\n# The Gist (Plain Words)\nThis paper answers the key question: *why* does the generalising circuit eventually win? The answer: it is more efficient \u2014 it achieves the same correct training outputs using **less weight norm** than the memorising solution. Under [[Weight Decay|weight decay]], the norm is penalised, so given enough time the efficient circuit is the one that survives. Grokking is just the moment the tipping-point is crossed.\n\n# Research Question\nWhy does a network, having already reached perfect training accuracy via [[Memorization|memorisation]], *eventually* switch to a [[Generalization|generalising]] solution? What is the mechanism behind the delayed transition?\n\n# Methodology\n- Built on the **canonical grokking setup** of [[Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets|Power et al. (2022)]] and the **mechanistic account** of [[Nanda - Progress Measures for Grokking via Mechanistic Interpretability|Nanda et al. (2023)]].\n- Theoretical analysis of the **weight norms** of the memorising circuit vs. the generalising Fourier circuit.\n- Supported by controlled experiments: measured weight norm of each \"circuit component\" independently and tracked their relative dominance during training.\n- Tested predictions of the efficiency account by ablating weight decay.\n\n# Key Findings\n1. **Circuit efficiency is the key.** The generalising (Fourier) circuit produces the same correct logits as the memorising circuit but with **lower total weight norm**.\n2. **Weight decay tips the balance.** Once training loss is near zero, weight decay's norm penalty is the dominant remaining gradient signal. It preferentially shrinks the memorising circuit (higher norm) faster than the generalising one (lower norm). Eventually the generalising circuit dominates the output \u2014 this is grokking.\n3. **The plateau length is set by the efficiency gap.** A more efficient generalising circuit (lower norm ratio) = shorter plateau; a less efficient one = longer plateau.\n4. **Grokking can be accelerated** by increasing weight decay (speeds up norm erosion) or by any intervention that makes the generalising circuit relatively more norm-efficient.\n5. **The same logic predicts [[Anti-Grokking]]**: if the generalising circuit becomes *less* norm-efficient than some re-emerging memorising pattern under extended training, test accuracy can collapse again.\n\n# Strengths\n- Simple, clean, and well-supported mechanistic account.\n- Makes quantitative predictions (plateau length scales inversely with efficiency gap) that are confirmed.\n- Unifies the [[Weight Decay|regularisation]] and [[Mechanistic Interpretability|mechanistic]] perspectives into one story.\n- Consistent with [[Neural Collapse]] terminal-phase dynamics (the \"cleanup\" process selecting the low-norm structure).\n\n# Limitations\n- Relies on the specific **Fourier circuit structure** identified for modular arithmetic; generality to other tasks is not fully demonstrated.\n- Does not explain *how* the Fourier circuit forms \u2014 only why it eventually wins once formed.\n- The exact definition of \"circuit efficiency\" requires knowing which circuit the network uses, which is task-specific.\n\n# Relation to Other Papers\n- **Discovery:** [[Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets]] gave the phenomenon.\n- **Mechanism:** [[Nanda - Progress Measures for Grokking via Mechanistic Interpretability]] identified the Fourier circuit Varma et al. explain.\n- **Weight-decay dynamics:** [[Xu - Dynamics in Deep Classifiers with the Square Loss]] proves rigorously that weight decay + normalisation drives low-norm, efficient solutions with provable generalisation bounds.\n- **Implicit regularisation:** [[Advani - High-dimensional Dynamics of Generalization Error]] shows gradient descent provides implicit regularisation even without explicit weight decay.\n- **Spectral evidence:** [[Martin - Predicting Trends in Neural Network Quality]] shows the self-regularisation induced by training is visible in heavy-tailed weight spectra.\n\n# Relevance to Thesis\n**High.** The circuit efficiency account is one of the five main theories in [[Competing Theories of Grokking]] and informs:\n- Why the **L2-norm predictor** tracks the transition (it measures norm erosion directly).\n- Why the **Commutator Defect** is the expected top performer (it captures Hessian geometry of circuit efficiency).\n- The [[Role of Weight Decay]] synthesis note and [[What Causes Grokking]] causal chain.\n\n# Key Quotes\n> \"We identify the reason networks grok: the generalising circuit is more efficient \u2014 it achieves the same training loss with lower weight norm. Under L2 regularisation, the network eventually converges to the more efficient solution.\"\n\n> \"We find that grokking occurs at a predictable time that is inversely related to the efficiency gap between the memorising and generalising solutions.\"\n\n# Tags\n#grokking #circuit-efficiency #weight-decay #mechanistic #regularization #primary-evidence\n\n---\n## Related Notes\n- [[Circuit Formation]] \u00b7 [[Weight Decay]] \u00b7 [[Role of Weight Decay]] \u00b7 [[What Causes Grokking]]\n- [[Mechanistic Interpretability]] \u00b7 [[Grokking Predictors]] \u00b7 [[The Nine Predictors]]\n- [[Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets]] \u00b7 [[Nanda - Progress Measures for Grokking via Mechanistic Interpretability]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Xu - Dynamics in Deep Classifiers with the Square Loss.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Xu - Dynamics in Deep Classifiers with the Square Loss.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "neural-collapse",
+        "dynamics",
+        "square-loss",
+        "generalization-bounds"
+      ]
+    },
+    "links": [
+      "Papyan - Prevalence of Neural Collapse",
+      "Neural Collapse",
+      "Weight Decay",
+      "Mixon - Neural Collapse with Unconstrained Features",
+      "05 - Memorization vs Generalization",
+      "Li - Representations and Generalization in Artificial and Brain Neural Networks",
+      "00 - Start Here",
+      "The Nine Predictors"
+    ],
+    "content_length": 2596,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Neural Collapse]] \u00b7 [[Weight Decay]]\n\n# Xu \u2014 Dynamics in Deep Classifiers with the Square Loss\n\n# Citation\nXu, M., Rangamani, A., Liao, Q., Galanti, T., & Poggio, T. (2023). *Dynamics in Deep Classifiers Trained with the Square Loss: Normalization, Low Rank, Neural Collapse, and Generalization Bounds.* Research (AAAS), 0024.\n\n# The Gist (Plain Words)\nWith square-loss training plus normalisation and weight decay, networks provably squeeze their representations into a low-rank, collapsed shape that generalises well.\n\n# Research Question\nWhen and why does **square-loss** training generalise for classification, and what dynamics (normalisation, low rank, **[[Neural Collapse]]**) does gradient descent induce?\n\n# Methodology\nTheoretical analysis of GD dynamics under square loss with normalisation and **[[Weight Decay]]**; derive emergence of low-rank, collapsed solutions and **generalisation bounds** tied to normalised margin.\n\n# Key Findings\n- Normalisation + weight decay drive **low-rank** weight matrices and **neural collapse**.\n- **\"Zero square loss does not by itself imply large margin or good classification\"** \u2014 among interpolating solutions, only some generalise.\n- Provides generalisation bounds linking margin/geometry to test performance.\n\n# Strengths\n- Bridges loss choice \u2192 dynamics \u2192 geometry \u2192 generalisation in one framework.\n- Makes the **\"many zero-loss solutions differ\"** point precise \u2014 central to grokking.\n\n# Limitations\n- Square-loss / specific normalisation assumptions; idealised.\n- Not a grokking experiment; transformer/algorithmic case is by analogy.\n\n# Relation to Other Papers\n- Dynamic extension of [[Papyan - Prevalence of Neural Collapse]] and [[Mixon - Neural Collapse with Unconstrained Features]].\n- The author \"Xu\" lineage connects to the thesis's **Commutator Defect** and **Weight-Space PCA** predictors ([[The Nine Predictors]]).\n- Margin/low-rank view complements [[Li - Representations and Generalization in Artificial and Brain Neural Networks]].\n\n# Relevance to Thesis\nHigh. Justifies *why* a generalising solution is selected from the zero-loss manifold (low norm, low rank, large margin) \u2014 the mechanism grokking exploits; ties to weight-decay-driven predictors.\n\n# Key Quotes\n> \"zero square loss does not imply by itself neither large margin nor good classification on a test set.\"\n\n# Tags\n#neural-collapse #square-loss #low-rank #weight-decay #generalization-bounds\n\n---\n## Related Notes\n- [[Neural Collapse]] \u00b7 [[Weight Decay]] \u00b7 [[05 - Memorization vs Generalization]] \u00b7 [[The Nine Predictors]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Zhang - Understanding Deep Learning Still Requires Rethinking Generalization.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/03 - Literature/Zhang - Understanding Deep Learning Still Requires Rethinking Generalization.md",
+    "frontmatter": {
+      "tags": [
+        "literature",
+        "generalization",
+        "memorization",
+        "foundational",
+        "primary-evidence"
+      ]
+    },
+    "links": [
+      "Advani - High-dimensional Dynamics of Generalization Error",
+      "Role of Weight Decay",
+      "Rocks - Memorizing Without Overfitting",
+      "Double Descent",
+      "The Generalization Puzzle",
+      "Memorization",
+      "05 - Memorization vs Generalization",
+      "00 - Start Here",
+      "Generalization",
+      "Mei - Generalization Error of Random Features Regression"
+    ],
+    "content_length": 3170,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Hub: [[Memorization]] \u00b7 [[Generalization]]\n\n# Zhang \u2014 Understanding Deep Learning (Still) Requires Rethinking Generalization\n\n# Citation\nZhang, C., Bengio, S., Hardt, M., Recht, B., & Vinyals, O. (2021). *Understanding deep learning (still) requires rethinking generalization.* Communications of the ACM 64(3). (Updates the 2017 ICLR paper.)\n\n# The Gist (Plain Words)\nThe famous experiment showing networks can memorise completely random labels \u2014 so classic theories cannot explain why the same networks generalise on real data. We need to rethink generalisation.\n\n# Research Question\nDo classical explanations of generalization (model-family capacity, explicit regularization) actually explain why large neural networks generalize \u2014 and what does it mean that they can also **memorize** arbitrary data?\n\n# Methodology\nThe **randomization test**: replace training labels (and even images) with random noise and retrain state-of-the-art CNNs. Plus a theoretical construction of finite-sample expressivity for depth-2 nets.\n\n# Key Findings\n- SOTA networks **fit random labels and random-noise inputs to zero training error** \u2014 so raw capacity cannot explain generalization.\n- This is **qualitatively unaffected by explicit regularization** (weight decay, dropout, data augmentation) \u2014 regularization is neither necessary nor sufficient for generalization.\n- Depth-2 nets have **perfect finite-sample expressivity** once parameters exceed data points.\n- Traditional complexity measures (VC, Rademacher, uniform convergence) fail to be predictive.\n\n# Strengths\n- The defining empirical statement of the **generalization puzzle** that grokking dramatizes.\n- Cleanly separates *ability to memorize* from *tendency to generalize*.\n\n# Limitations\n- Diagnostic/negative result \u2014 shows what *doesn't* explain generalization, not what does.\n- Vision CNNs; not grokking or algorithmic tasks.\n\n# Relation to Other Papers\n- Sets up the puzzle answered dynamically by grokking and statically by [[Double Descent]] ([[Mei - Generalization Error of Random Features Regression]], [[Rocks - Memorizing Without Overfitting]]).\n- \"Memorize anything yet generalize\" directly motivates [[05 - Memorization vs Generalization]] and the implicit-regularization view of [[Advani - High-dimensional Dynamics of Generalization Error]].\n- Its \"regularization isn't the whole story\" stance informs the nuance in [[Role of Weight Decay]].\n\n# Relevance to Thesis\nHigh (foundational/framing). The canonical evidence that **memorization \u2260 generalization** and that capacity/regularization alone don't explain generalization \u2014 the premise every grokking study builds on.\n\n# Key Quotes\n> \"state-of-the-art convolutional networks ... easily fit a random labeling of the training data. This phenomenon is qualitatively unaffected by explicit regularization and occurs even if we replace the true images by completely unstructured random noise.\"\n\n# Tags\n#generalization #memorization #randomization-test #foundational #primary-evidence\n\n---\n## Related Notes\n- [[Memorization]] \u00b7 [[The Generalization Puzzle]] \u00b7 [[05 - Memorization vs Generalization]] \u00b7 [[Role of Weight Decay]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/04 - Synthesis/Competing Theories of Grokking.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/04 - Synthesis/Competing Theories of Grokking.md",
+    "frontmatter": {
+      "tags": [
+        "synthesis",
+        "theories",
+        "grokking"
+      ]
+    },
+    "links": [
+      "Circuit Formation",
+      "Pomarico - Transfer Entropy and O-Information to Detect Grokking",
+      "Papyan - Prevalence of Neural Collapse",
+      "Neural Collapse",
+      "Role of Weight Decay",
+      "Weight Decay",
+      "Thesis Proposal Summary",
+      "Mechanistic Explanations",
+      "Grokking Predictors|predictors",
+      "Anti-Grokking",
+      "What Causes Grokking",
+      "Xu - Dynamics in Deep Classifiers with the Square Loss",
+      "Li - Representations and Generalization in Artificial and Brain Neural Networks",
+      "Advani - High-dimensional Dynamics of Generalization Error",
+      "Phase Transitions Across Models",
+      "The Nine Predictors",
+      "00 - Start Here"
+    ],
+    "content_length": 3617,
+    "body": "\u2191 Parent: [[00 - Start Here]] \u00b7 Related: [[What Causes Grokking]]\n\n# Competing Theories of Grokking\n\n> [!summary]\n> Several explanations for grokking coexist. They are **not mutually exclusive** \u2014 most describe the same memorise\u2192generalise transition from different vantage points (regularisation, mechanism, dynamics, information, geometry). This note lays them side by side.\n\n> [!tip] In plain words\n> There are several stories for why grokking happens, and they mostly aren't rivals \u2014 they're the same event seen from different angles: the \"keep it simple\" pressure, the circuit being built, the slow dynamics, the information reshuffle, and the geometry.\n\n## The five main accounts\n\n| Theory | Core claim | Mechanism of the transition | Primary support in vault | Main weakness |\n|--------|-----------|------------------------------|--------------------------|---------------|\n| **Regularisation / circuit efficiency** | Generalising circuit has lower norm; [[Weight Decay]] selects it once both fit data | Slow norm decay tips balance from memorising to generalising solution | [[Xu - Dynamics in Deep Classifiers with the Square Loss]], Varma et al. 2023 | Why is the efficient circuit slow to form? |\n| **Slow-mode / dynamical** | GD has fast (memorising) and slow (generalising) modes; a frozen subspace delays generalisation | Slow modes evolve over the plateau until generalisation dominates | [[Advani - High-dimensional Dynamics of Generalization Error]] | Mostly linear theory |\n| **Mechanistic** | Network builds an interpretable algorithm (Fourier circuits) | Gradual [[Circuit Formation]] under the surface | [[Mechanistic Explanations]], Nanda et al. 2023 | Task-specific (modular arithmetic) |\n| **Information-theoretic** | Internal information reorganises (synergy\u2192redundancy) | Entanglement/redundancy transition | [[Pomarico - Transfer Entropy and O-Information to Detect Grokking]] | Estimator sensitivity; transfer unproven |\n| **Geometric / collapse** | Representations tighten to low-rank, collapsed, high-margin geometry | Terminal-phase [[Neural Collapse]] | [[Papyan - Prevalence of Neural Collapse]], [[Li - Representations and Generalization in Artificial and Brain Neural Networks]] | Link to algorithmic grokking not yet shown |\n\n## Where they agree\n\n> [!important]\n> All five agree on the **shape**: a metastable memorising state, a silent reorganisation, then an abrupt switch to a special (low-norm / efficient / collapsed / structured) generalising solution. They differ on **what to measure**. This is precisely why there are many [[Grokking Predictors|predictors]] \u2014 each operationalises a different theory as an order parameter.\n\n## Where they disagree\n\n- **Is [[Weight Decay]] necessary or just an accelerator?** Regularisation theory leans necessary; dynamical theory says grokking can occur slowly even without explicit decay. See [[Role of Weight Decay]].\n- **Single universal order parameter, or task-specific?** Mechanistic/information accounts risk being task-bound; spectral/geometric accounts aim for universality.\n- **Grokking vs [[Anti-Grokking]]:** same or different signals? The thesis predicts *different*.\n\n## How the thesis adjudicates\n\nBy benchmarking predictors derived from each theory on a shared protocol, the thesis turns this theoretical debate into a **measurable** question: which operationalisation fires earliest and most reliably across tasks. See [[Thesis Proposal Summary]] and [[The Nine Predictors]].\n\n---\n## Related Notes\n- [[What Causes Grokking]] \u00b7 [[Role of Weight Decay]] \u00b7 [[Mechanistic Explanations]] \u00b7 [[Phase Transitions Across Models]]\n"
+  },
+  "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/04 - Synthesis/Empirical Evidence Across Studies.md": {
+    "original_path": "/Users/jonathanjohn/Library/Mobile Documents/iCloud~md~obsidian/Documents/Grokking Master Thesis/04 - Synthesis/Empirical Evidence Across Studies.md",
+    "frontmatter": {
+      "tags": [
+        "synthesis",
+        "evidence",
+        "comparison"
+      ]
+    },
+    "links": [
+      "Pomarico - Transfer Entropy and O-Information to Detect Grokking",
+      "Biroli - Dynamical Regimes of Diffusion Models",
+      "Mei - A Mean Field View of Two-Layer Neural Networks",
+      "Jiang - Network Properties Determine Neural Network Performance",
+      "Rocks - Memorizing Without Overfitting",
+      "Martin - Predicting Trends in Neural Network Quality",
+      "00 - Start Here",
+      "Phase Transitions Across Models",
+      "Competing Theories of Grokking",
+      "Research Gaps",
+      "Bahri - Explaining Neural Scaling Laws",
+      "Canatar - Spectral Bias and Task-Model Alignment",
+      "Baldi - Temporal Evolution of Generalization in Linear Networks",
+      "Papyan - Prevalence of Neural Collapse",
+      "Barbier - Optimal Errors and Phase Transitions in High-Dimensional GLMs",
+      "Spigler - A Jamming Transition Affects Generalization",
+      "Advani - High-dimensional Dynamics of Generalization Error",
+      "Sokoli\u0107 - Robust Large Margin Deep Neural Networks",
+      "Mei - Generalization Error of Random Features Regression",
+      "Zhang - Understanding Deep Learning Still Requires Rethinking Generalization",
+      "Mixon - Neural Collapse with Unconstrained Features",
+      "Xu - Dynamics in Deep Classifiers with the Square Loss",
+      "Li - Representations and Generalization in Artificial and Brain Neural Networks"
+    ],
+    "content_length": 5610,
+    "body": "\u2191 Parent: [[00 - Start Here]]\n\n# Empirical Evidence Across Studies\n\n> [!summary]\n> A cross-paper map of *what was measured, on what, and what was found*. Useful for seeing how directly each paper bears on grokking and for spotting agreements and gaps.\n\n> [!tip] In plain words\n> A big side-by-side table of who tested what, on which data, and what they found \u2014 so you can see at a glance where the papers agree and where the gaps are.\n\n## Master comparison table\n\n| Paper | Model / system | Task / data | Key measurable | Bearing on grokking |\n|-------|----------------|-------------|----------------|---------------------|\n| [[Pomarico - Transfer Entropy and O-Information to Detect Grokking]] | MPS tensor network | Fashion-MNIST, hyperspectral | entanglement entropy, O-information, transfer entropy | **Direct**: order parameters for the transition |\n| [[Martin - Predicting Trends in Neural Network Quality]] | 100s of pretrained CNNs | ImageNet etc. | weight-spectrum power-law \u03b1 | **High**: source of HTSR/Correlation-Trap predictors |\n| [[Jiang - Network Properties Determine Neural Network Performance]] | 17 ImageNet models | 5 datasets + NAS | neural capacitance (graph) | **Method**: early-training prediction |\n| [[Papyan - Prevalence of Neural Collapse]] | 3 architectures | 7 datasets | NC1\u2013NC4 collapse metrics | **High (concept)**: structure after zero error |\n| [[Mixon - Neural Collapse with Unconstrained Features]] | unconstrained-features model | synthetic | risk-landscape minimisers | **Concept**: why collapse forms |\n| [[Xu - Dynamics in Deep Classifiers with the Square Loss]] | deep classifiers (theory) | classification | low rank, margin, NC, bounds | **High**: which zero-loss solution generalises |\n| [[Mei - Generalization Error of Random Features Regression]] | random-features regression | sphere data | exact test-error asymptotics | **Foundational**: double descent |\n| [[Rocks - Memorizing Without Overfitting]] | linear / 2-layer nets | synthetic | analytic bias/variance | **Foundational**: variance spike |\n| [[Advani - High-dimensional Dynamics of Generalization Error]] | linear nets (RMT) | synthetic | error **dynamics**, frozen subspace | **High (concept)**: training-time analogue |\n| [[Barbier - Optimal Errors and Phase Transitions in High-Dimensional GLMs]] | random GLMs | synthetic | mutual info, optimal error | **Foundational**: rigorous transition |\n| [[Spigler - A Jamming Transition Affects Generalization]] | deep nets | image data | gen-error vs width, cusp | **Foundational**: jamming/double descent |\n| [[Biroli - Dynamical Regimes of Diffusion Models]] | diffusion models | Gaussian mix + real | speciation/collapse times | **Analogical**: transitions are pervasive |\n| [[Canatar - Spectral Bias and Task-Model Alignment]] | kernel / NTK | real + synthetic | spectral bias, alignment | **Boundary**: lazy-regime limits |\n| [[Li - Representations and Generalization in Artificial and Brain Neural Networks]] | ANN + brain | vision | manifold geometry | **High (concept)**: geometric order params |\n| [[Zhang - Understanding Deep Learning Still Requires Rethinking Generalization]] | SOTA CNNs | random-label / random-noise | train/test gap under randomization | **Foundational**: memorise \u2260 generalise |\n| [[Baldi - Temporal Evolution of Generalization in Linear Networks]] | linear nets (1991) | identity + noise | validation-curve dynamics | **High (concept)**: earliest plateau/temporal view |\n| [[Sokoli\u0107 - Robust Large Margin Deep Neural Networks]] | DNNs (theory) | MNIST/CIFAR/ImageNet | margin + Jacobian spectral norm | **Moderate**: margin/robustness order param |\n| [[Mei - A Mean Field View of Two-Layer Neural Networks]] | 2-layer nets (mean-field) | synthetic | distributional (PDE) dynamics | **High (concept)**: feature-learning regime |\n| [[Bahri - Explaining Neural Scaling Laws]] | random-feature + pretrained | standard | power-law loss vs D, P | **Context**: smooth scaling vs transition |\n\n## Agreements that recur\n\n> [!success] Convergent findings\n> - **Structure forms after zero training error** ([[Papyan - Prevalence of Neural Collapse]], [[Xu - Dynamics in Deep Classifiers with the Square Loss]]).\n> - **The interpolation point is a transition with a variance/cusp peak** ([[Mei - Generalization Error of Random Features Regression]], [[Rocks - Memorizing Without Overfitting]], [[Spigler - A Jamming Transition Affects Generalization]]).\n> - **Generalisation is predictable from internal quantities without test data** ([[Martin - Predicting Trends in Neural Network Quality]], [[Jiang - Network Properties Determine Neural Network Performance]]).\n> - **Memorisation capacity \u2260 generalisation, and delayed generalisation is intrinsic to learning dynamics** ([[Zhang - Understanding Deep Learning Still Requires Rethinking Generalization]], [[Baldi - Temporal Evolution of Generalization in Linear Networks]]).\n\n## Tensions / gaps\n\n> [!warning]\n> - Only **one** paper ([[Pomarico - Transfer Entropy and O-Information to Detect Grokking]]) measures grokking *directly*; the rest are foundations measured on vision/synthetic data.\n> - **Feature-learning** accounts ([[Li - Representations and Generalization in Artificial and Brain Neural Networks]]) vs **lazy/kernel** accounts ([[Canatar - Spectral Bias and Task-Model Alignment]]) disagree on whether fixed-kernel theory can explain real generalisation.\n> - No paper here compares grokking predictors head-to-head \u2014 the thesis gap ([[Research Gaps]]).\n\n---\n## Related Notes\n- [[Competing Theories of Grokking]] \u00b7 [[Phase Transitions Across Models]] \u00b7 [[Research Gaps]]\n"
+  }
+}
