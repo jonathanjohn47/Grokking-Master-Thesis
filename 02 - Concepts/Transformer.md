@@ -97,6 +97,9 @@ Here is the **workflow** at each transformer block:
 
 Because both stages use **residual connections** (addition, not replacement), the information flows **additively** through the model. This is crucial: the final prediction is literally a **sum of contributions** from every attention head and every MLP layer — making it traceable and interpretable.
 
+> [!NOTE]
+> **Important clarification:** The MLP does **not** inspect the key-value pairs inside attention. The MLP receives **the output of attention** — which is the weighted sum of values that has already been mixed together. See [[Attention to MLP Information Flow]] for a step-by-step walkthrough of exactly what happens between the two stages.
+
 #### Why Both Stages Are Needed
 
 - **Attention alone** can tell tokens what to look at, but cannot store or retrieve specific facts.

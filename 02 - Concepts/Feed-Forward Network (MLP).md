@@ -47,6 +47,9 @@ In a sense:
 
 Together, they enable both understanding relationships and using knowledge.
 
+> [!TIP]
+> **How does the MLP receive information from attention?** The MLP doesn't inspect the internal query-key-value pairs from attention. Instead, it receives **the output that attention produced** (a weighted combination of values) via the residual stream. See [[Attention to MLP Information Flow]] for the complete information flow through a transformer block.
+
 ---
 
 ## Intuition

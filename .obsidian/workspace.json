@@ -6,7 +6,7 @@
       {
         "id": "28dbff55e807b076",
         "type": "tabs",
-        "dimension": 62.58680555555556,
+        "dimension": 71.20689655172414,
         "children": [
           {
             "id": "89b8db13881b1a23",
@@ -27,7 +27,7 @@
       {
         "id": "cc0310658fa953c6",
         "type": "tabs",
-        "dimension": 37.41319444444444,
+        "dimension": 28.793103448275865,
         "children": [
           {
             "id": "fdd3dca2180c55d7",
@@ -202,21 +202,23 @@
       "bases:Create new base": false
     }
   },
-  "active": "89b8db13881b1a23",
+  "active": "1df38155c6990fa8",
   "lastOpenFiles": [
-    "graphify-out/cache/semantic",
-    "graphify-out/cache/stat-index.json",
-    "graphify-out/cache/ast/v0.8.42/30332c900164fe372b4c054fefde3d380462f88ab05ca9927bc8eb0a758f9b8c.json",
-    "graphify-out/cache/ast/v0.8.42/1777e3848d0d8319605c77276a4576063397b19ff11f71c100d9f85c44af333a.json",
-    "graphify-out/cache/ast/v0.8.42/15ac18e2bbe3a44ecc5905c619d7f3c152b200a53a26c120088624c2b7a35705.json",
-    "graphify-out/cache/ast/v0.8.42/080bb5e1aeba73da6ef1d33ab9d6efde107e61139e17064f9a891301b9cd5a81.json",
-    "graphify-out/cache/ast/v0.8.42/2ccb9be789f4b982543eda694e99fdc1cb65a343a52954e8b5b83ee1cdddf759.json",
-    "graphify-out/cache/ast/v0.8.42/4665383e44c4054eaa6d0ca81c28f9946473e4005d64a60942d845d96d57a783.json",
-    "graphify-out/cache/ast/v0.8.42/2da3e6d52dd615eb21d1c154f262bfaa6237a47fc5c85453a06aa959cf9222ec.json",
-    "graphify-out/cache/ast/v0.8.42/1a0f7b07f1c8458977c5d9e8f0d5b0007ad8004430f9cc0c0031ac81e4dcf2e0.json",
-    "graphify-out/cache/ast/v0.8.42/1b62c29428847965f305c5a52f22768cb0a81e9461acb023cf9ad70ac26b9b6a.json",
-    "02 - Concepts/Jamming Transition.md",
+    "02 - Concepts/Attention to MLP Information Flow.md",
     "02 - Concepts/Transformer.md",
+    "CLAUDE.md",
+    "graphify-out/cost.json",
+    "graphify-out/manifest.json",
+    "graphify-out/graph.html",
+    "graphify-out/graph.json",
+    "graphify-out/GRAPH_REPORT.md",
+    "graphify-out/cache/semantic/38df48076dbe8f4fdc8fdf6217e0a391e68e6bb0b42386f3396a61f45343a094.json",
+    "graphify-out/cache/semantic/7e5fa5b2abd166356bdf8fd7d61c10fa41095c5c039d62b8aa45b019a8029eb6.json",
+    "graphify-out/cache/semantic/8ab226fd223d215e40745a88d6042480503b4658406af66a7ce42f629fc299d4.json",
+    "graphify-out/cache/semantic/a7dfbc10107530c313f48cadafc0cc2a58e518981d80eee275bb5b004fbe7e7c.json",
+    "graphify-out/cache/semantic/d5cb3b48fc0a899b73a2495abc445e9baa51781218f1dee28108af308374f84a.json",
+    "graphify-out/cache/semantic/f86229522bd0027fdb0d415d371663b9a5fdfa4805cfedf1ad305ffa3b67bb89.json",
+    "02 - Concepts/Jamming Transition.md",
     "03 - Literature/Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets.md",
     "02 - Concepts/Transfer Learning.md",
     "02 - Concepts/Supervised Fine-Tuning.md",
@@ -237,8 +239,6 @@
     "02 - Concepts/Causal Masking.md",
     "02 - Concepts/Residual Stream.md",
     "compiled_vault.md",
-    "Compile All Notes.md",
-    "02 - Concepts/RoPE.md",
-    "02 - Concepts/Learned Positional Embeddings.md"
+    "Compile All Notes.md"
   ]
 }
