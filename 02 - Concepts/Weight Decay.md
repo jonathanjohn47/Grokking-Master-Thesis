@@ -302,6 +302,8 @@ Researchers are still exploring:
 
 - [[Regularization]] — the broader concept
 - [[AdamW]] — the optimizer that uses decoupled weight decay
+- [[Weight Decay Necessity]] — is weight decay actually required for grokking?
+- [[Implicit Regularization]] — how grokking works without explicit weight decay
 - [[Role of Weight Decay]] — detailed analysis of weight decay's role
 - [[Varma - Explaining Grokking Through Circuit Efficiency]] — the circuit efficiency story
 - [[Neural Collapse]] — what weights look like after weight decay

@@ -5,139 +5,301 @@ tags: [learning-path, grokking, dynamics]
 
 # 02 - The Grokking Training Dynamics
 
-## What Is This Note About?
+## What Is This?
 
-When a neural network groks, it does not happen all at once. The process unfolds in **three distinct phases**, like acts in a play.
+Grokking is not a single moment. It is a journey with three distinct chapters.
 
-This note explains what happens in each phase — and crucially, what is happening *inside* the network even when nothing seems to be changing from the outside.
+When a neural network is training, you can watch three completely different phases unfold — one after another — like a story with a beginning, a middle, and a dramatic ending.
+
+This note explains what happens in each phase, and more importantly, what is changing *inside* the network even when the outside appears completely frozen.
+
+---
+
+## Why Does Grokking Have These Phases?
+
+Before we explain what happens, let's understand *why* there are phases at all.
+
+A neural network faces a strange puzzle during training:
+- There is a **fast solution**: memorise everything you have seen. This works immediately.
+- There is a **slow solution**: learn the underlying rule. This takes much longer to build.
+
+The network starts by taking the fast path (memorisation). But there is a force quietly pushing it toward the slow path (generalisation) — and this force is called [[Weight Decay]].
+
+This creates a competition inside the network. The slow, correct solution has to build up its strength while the fast, wrong solution gradually weakens. This competition unfolds in three stages.
 
 ---
 
 ## The Three Phases of Grokking
 
-### Phase 1 — Memorisation (Fast)
+### Phase 1 — Memorisation (This Happens Fast)
 
-In this first phase, the network rapidly learns to get every training example right.
+This is the first chapter. The network learns to remember.
 
-- **Training score:** Goes from 0% to nearly 100% very quickly.
-- **Test score:** Stays at chance level — basically random guessing.
-- **What is happening inside:** The network has built something like a giant lookup table. For every question it has seen, it has stored the answer. But it has not discovered the underlying rule. It cannot answer new questions.
+**What you observe:**
+- **Training score:** Jumps from nearly 0% to around 100% within the first few training steps.
+- **Test score:** Stays at random guessing level (about 50% for a two-choice problem, for example).
+- **Graph appearance:** Training loss drops like a stone. Test loss barely moves.
 
-Think of a student who photocopied all the past exam answers. They can get 100% on those exact questions, but will fail entirely if asked anything slightly different.
+**What is actually happening inside:**
+
+The network is building a **giant lookup table** — like a filing cabinet with millions of tiny drawers. Each drawer stores one answer.
+
+For example, if the network is learning modular arithmetic (like "what is 7 + 5 in mod 11?"), it stores:
+- Drawer 1: "7 + 5 → 1"
+- Drawer 2: "3 + 9 → 1"  
+- Drawer 3: "4 + 8 → 1"
+- ...and so on for every training example
+
+The network can now answer every single training question perfectly. But it has not learned the underlying rule ("add the numbers, then find the remainder when divided by 11").
+
+> [!ANALOGY]
+> Imagine a student who photocopies the answers to every past exam question. When the same questions appear on the real exam, they score 100%. But if the exam has any new question — even a slight variation — they fail completely.
+
+**This is memorisation, not understanding.**
 
 ---
 
-### Phase 2 — The Plateau (Long and Silent)
+### Phase 2 — The Plateau (Long, Silent, and Deceptive)
 
-This is the most confusing phase. Everything looks frozen.
+This is the most mysterious phase. From the outside, it looks like nothing is happening.
 
-- **Training score:** Stays at ~100%. No change.
-- **Test score:** Stays at chance level. No change.
-- **What it looks like from the outside:** Nothing is happening. The network appears stuck.
-- **What is actually happening inside:** Something important is changing, but it is invisible from the outside.
+**What you observe:**
+- **Training score:** Stays stuck at around 100%. Completely flat.
+- **Test score:** Stays at random guessing level. Completely flat.
+- **Graph appearance:** Both curves are horizontal lines. No movement whatsoever.
+- **Time duration:** This can last for thousands of training steps. Sometimes tens of thousands.
+
+**What it looks like:**
+
+The network appears completely frozen. A researcher looking at the performance graph would think training has stalled. Perhaps there is a bug. Perhaps this task is impossible.
 
 > [!WARNING]
-> Many researchers would stop training here. The scores are flat, so why continue? But stopping here would mean missing the grokking event. The plateau is deceptive.
+> This is where many experiments fail. Researchers see flat performance and stop training, thinking "nothing is happening." They never discover grokking because they quit too early.
 
-**What is secretly happening during the plateau?**
+**What is actually happening inside (the invisible drama):**
 
-The network is under a slow, constant pressure to keep its internal values (called weights) small. This pressure is applied by a technique called **weight decay**.
+While the performance scores stay flat, something profound is changing inside the network.
 
-The memorised lookup-table solution requires large internal values — it is like a bulky filing cabinet storing every answer separately. The network is slowly being squeezed to abandon this bulky solution.
+Remember the "filing cabinet" lookup table from Phase 1? That solution uses enormous, bulky weights — like a massive library storing every answer on separate shelves.
 
-At the same time, a more efficient solution — one that actually understands the rule — is being quietly assembled. This solution is smaller and more compact.
+There is now a **competing solution building in the shadows**: a small, elegant circuit that actually understands the rule.
 
-The competition between these two solutions is what makes the plateau last so long. The memorised solution is hard to dislodge. But weight decay keeps pressing.
+This new circuit is being constructed piece by piece, while [[Weight Decay]] is slowly **squeezing the network** to abandon the bulky memorisation solution.
+
+**Weight Decay** works like this:
+- At every training step, the network is gently encouraged to make all its internal numbers slightly smaller.
+- This pressure is constant and relentless.
+- It is not enough to destroy the memorisation solution immediately. But it slowly, steadily weakens it.
+
+Think of it as a slow erosion. Drop by drop, the memorisation solution loses its strength. Meanwhile, the generalisation solution builds up its strength.
+
+> [!TIP]
+> Weight decay is not random pressure. It is specifically designed to favor compact solutions over bulky solutions. A solution that memorises requires large weights (a fat filing cabinet). A solution that understands rules requires fewer, more efficient weights (a concise algorithm).
+
+**Why is this phase so long?**
+
+The memorised solution got a huge head start. It was fully formed by the end of Phase 1. The generalisation solution is being built from scratch.
+
+Under weight decay's slow pressure, the generalisation solution gradually gains strength. But it takes a very long time to build up enough strength to compete with the solution that already dominated the network.
+
+This is the core reason for the long plateau: **two solutions are competing, and the slower-but-better solution needs time to mature**.
+
+> [!QUESTION]
+> How do researchers know that something is actually happening during the plateau? They look *inside* the network at the weights, gradients, and activations — not at the external performance scores. This is what [[Grokking Predictors]] try to do.
 
 ---
 
-### Phase 3 — Grokking (Abrupt)
+### Phase 3 — Grokking (The Breakthrough Moment)
 
-After the long plateau, the efficient solution suddenly takes over.
+After the long, silent plateau, something dramatic happens.
 
-- **Training score:** Stays at ~100%. (No change — it was already perfect.)
-- **Test score:** Jumps from near 0% to near 100% in just a few hundred training steps.
-- **What happened:** The efficient, rule-understanding solution finally became strong enough to dominate the network's outputs. The network can now compute the correct answer for any question, including ones it has never seen.
+**What you observe:**
+- **Training score:** Stays at around 100%. (No change — it was already perfect from Phase 1.)
+- **Test score:** Explodes upward from random guessing (~50%) to near-perfect (~99%) in just a few hundred training steps.
+- **Graph appearance:** The test curve, which was flat and useless, suddenly shoots upward like a rocket.
+- **Duration of the jump:** Very fast — perhaps 500 to 1000 training steps.
+
+**What happened:**
+
+The generalisation solution — the one that was quietly building during the plateau — finally became strong enough to take over.
+
+The [[Weight Decay]] pressure has done its job. The memorisation solution is now so weak that the network's outputs are dominated by the generalisation solution.
+
+**The network has now truly learned the rule.** It can answer questions it has never seen before.
 
 > [!NOTE]
-> This jump happens very suddenly. It is not a gradual improvement. One moment the network is failing on new questions; a few hundred steps later, it is getting almost all of them right. This abruptness is one of the reasons grokking is so striking and interesting.
+> This jump is *abrupt*. There is no gradual learning curve. The test performance stays flat, then suddenly explodes upward. This explosive, sudden transition is the defining characteristic of grokking. It is not a normal learning curve.
+
+**A concrete example:**
+
+Imagine a network learning "modular arithmetic mod 11". During Phase 1, it memorises patterns like:
+- 7 + 5 = 1 (because 12 mod 11 = 1)
+- 3 + 9 = 1 (because 12 mod 11 = 1)
+- 6 + 6 = 1 (because 12 mod 11 = 1)
+
+It looks like the network is learning random facts.
+
+During Phase 2, the network is building a circuit that computes the actual rule: "add the numbers, divide by 11, take the remainder."
+
+At the grokking moment (Phase 3), this circuit takes over completely. Now the network can compute:
+- 2 + 4 = 6 ✓ (correct, never seen before)
+- 8 + 7 = 4 ✓ (correct, never seen before)  
+- 10 + 10 = 9 ✓ (correct, never seen before)
+
+The rule is now active. The memorisation is now dormant.
+
+> [!TIP]
+> Grokking is dramatic because it feels like a sudden understanding. But in reality, the understanding was being built all along, during the seemingly-frozen plateau. Grokking is the moment when that understanding finally becomes strong enough to matter.
 
 ---
 
-## A Table Summary
+## Quick Reference: The Three Phases at a Glance
 
-| Phase | Training Score | Test Score | What Is Happening Inside |
-|-------|---------------|------------|--------------------------|
-| 1 — Memorisation | Goes to ~100% quickly | Stays near 0% (random) | Network builds a lookup table of all training answers |
-| 2 — Plateau | Stays ~100% | Stays near 0% | Weight decay slowly erodes the lookup table; a rule-understanding circuit builds up quietly |
-| 3 — Grokking | Stays ~100% | Jumps to ~100% suddenly | The rule-understanding circuit takes over and the network can now answer any question |
+| Phase | Duration | Training Score | Test Score | Internal Event |
+|-------|----------|----------------|------------|-----------------|
+| **1 — Memorisation** | Fast (seconds to minutes) | Rises to ~100% | Stays near 0% | Lookup table being constructed |
+| **2 — Plateau** | Slow (thousands of steps) | Stays at ~100% | Stays near 0% | Weight decay erodes memorisation; rule circuit builds silently |
+| **3 — Grokking** | Rapid (hundreds of steps) | Stays at ~100% | Shoots to ~100% | Rule circuit becomes dominant and takes control |
 
 ---
 
-## Why Does the Plateau Exist?
+## The Fundamental Question: Why Is There a Plateau?
 
-This is one of the most important questions in grokking research.
+This is worth asking directly: **Why doesn't the network just learn the rule from the beginning?**
 
-The short answer is: **there are two competing solutions, and one takes a long time to overtake the other**.
+The answer is about **complexity and efficiency**:
 
-Think of it like a race:
+- **The memorisation solution is easy to find.** It requires no insight into the problem. Just store every answer.
+- **The generalisation solution is hard to find.** It requires discovering the underlying pattern, which demands both internal computation and understanding.
+
+During training, the network takes the path of least resistance: memorisation.
+
+But memorisation is expensive (it requires many large weights). [[Weight Decay]] penalizes this expense, slowly making the network abandon the bulky solution and adopt the lean, efficient rule.
+
+The plateau is simply the time it takes for this competition to unfold:
 - The **memorisation solution** (lookup table) is a fast runner who gets out ahead immediately.
 - The **generalisation solution** (the actual rule) is a slow but efficient runner.
 - Under weight decay pressure, the slow runner gradually gains ground during the plateau.
 - Eventually, the efficient runner overtakes the fast runner — and that is the grokking moment.
 
-The plateau is simply the time it takes for the efficient solution to build up enough strength to win.
-
 > [!TIP]
 > Researchers discovered that this kind of "long but finite plateau" is not unique to grokking. Even in the simplest possible networks (called linear networks), mathematicians proved in 1991 that you can have very long plateaus followed by sudden improvement. Grokking is an extreme version of something that has always been possible.
 
+The plateau is not a failure of learning. It is a reflection of the **difficulty of finding a good general rule** versus the **ease of memorising specific answers**.
+
 ---
 
-## Why the Plateau Is a Measurement Problem
+## The Plateau Is Invisible From the Outside
 
-Because both training and test scores are flat during Phase 2, the usual tools researchers use to monitor training are **useless** during this phase.
+Here is the core problem: **nothing you can measure from outside tells you that something is changing.**
 
-Looking at the loss curve (a graph of how wrong the network is) tells you nothing. Everything looks frozen.
+If you only look at training and test scores (the standard way researchers monitor neural networks), the plateau looks like complete stagnation.
 
-The only way to tell if grokking is coming is to look **inside** the network — at the actual values (weights), the patterns of change (gradients), or the information in the network's hidden layers (activations).
+A normal training curve looks like this:
+- Error gets smaller over time (smooth downward curve).
+- You can predict when training is done (error stops improving).
 
-This is exactly what grokking predictor research tries to do: find internal signals that change *before* the test score changes, giving researchers advance warning that grokking is approaching.
+But grokking looks like this:
+- Error drops fast (Phase 1).
+- Error stays flat for a very long time (Phase 2).
+- Error suddenly drops again (Phase 3).
+
+**The plateau breaks normal intuition.** If you train a network for 10,000 steps and it shows no improvement after step 2,000, you would normally say "training is done, stop." But grokking says "wait another 8,000 steps and something dramatic will happen."
+
+**How do researchers know grokking is coming?**
+
+They must look *inside* the network at measurements that are invisible from the outside:
+- **Weights:** The internal numbers are changing during the plateau, slowly shifting from the memorisation solution toward the generalisation solution.
+- **Gradients:** The direction and magnitude of change is shifting.
+- **Activations:** The patterns of internal computation are reorganizing.
+
+This is the entire purpose of [[Grokking Predictors]] research — to find internal signals that change during the plateau, giving advance warning that grokking is approaching.
+
+> [!QUESTION]
+> Could we have predicted the grokking moment if we had looked at the right internal signals?
+> 
+> That is the research question. The answer appears to be **yes** — multiple predictor methods have found success in detecting pre-grokking signals.
 
 ---
 
 ## The Dark Twin: Anti-Grokking
 
-There is a disturbing counterpart to grokking called **[[Anti-Grokking]]**.
+There is a disturbing phenomenon called **[[Anti-Grokking]]** that can happen after grokking.
 
-In some situations, if you keep training even after grokking has happened, the test score can **collapse again**. The network goes back to failing on new questions, even though it had already learned to generalise.
+**What is it?**
 
-This makes the prediction problem even harder: you need signals not just to detect approaching grokking, but also to detect when **anti-grokking** is approaching — which may require completely different kinds of signals.
+After a network has grokked and learned to generalise, if you keep training long enough, something tragic can happen:
+
+- The test score suddenly **collapses**.
+- The network goes back to failing on new questions.
+- It has *forgotten* the rule it just learned.
+- The memorisation solution reactivates.
+
+This is the reverse of grokking. It is learning followed by unlearning.
+
+**Why does anti-grokking happen?**
+
+This is an active area of research. One theory is that extreme [[Weight Decay]] can eventually damage even the generalisation solution, pushing the network to find some other way to fit the training data.
+
+Or the winner could change. If conditions during training shift enough — maybe the learning rate changes, or the data pattern changes — memorisation might suddenly become the better solution again. Even though generalisation was winning just moments before.
+
+**Why does this matter?**
+
+Anti-grokking makes the prediction problem *much harder*:
+- We need to find signals that predict when grokking is approaching.
+- We also need to find signals that predict when anti-grokking is approaching.
+- These might require completely different detection methods.
+
+This adds another layer of complexity to understanding neural network training dynamics.
+
+> [!WARNING]
+> Not all [[Grokking Predictors]] account for anti-grokking. Many assume that once grokking happens, generalisation is stable. But the presence of anti-grokking challenges this assumption.
 
 ---
 
 ## Important Terms
 
-**Weight decay:** A technique that gently pushes all the network's internal values (weights) toward zero at every training step. Think of it as a constant pressure to keep the network small and efficient.
+**Memorisation:**
+The act of storing individual facts without understanding the underlying pattern. A memorised solution requires the network to store many large internal numbers (weights) — like a filing cabinet with a drawer for every answer.
 
-**Weights:** The millions of small numbers inside a neural network. Training adjusts these numbers so the network gets better at its task.
+**Generalisation:**
+The act of discovering and applying a general rule that works for any input. A generalised solution is compact and efficient — like an algorithm.
 
-**Gradients:** Measurements of how much each weight should change to improve the network's performance.
+**[[Weight Decay]]:**
+A technique that gently penalizes large weights at every training step. Think of it as a constant pressure pushing the network toward simpler, more efficient solutions. It is the force that makes memorisation increasingly expensive over time.
 
-**Activations:** The values produced inside the network as it processes an input. Analysing activations can reveal what the network is "thinking."
+**Weights (or parameters):**
+The millions (or billions) of small numbers inside a neural network. Training adjusts these numbers so the network performs better. A weight can be thought of as a connection strength between neurons.
 
-**Loss curve:** A graph showing how wrong the network is over time. During the plateau, this curve looks flat — even though something is changing inside.
+**Gradients:**
+Measurements of how much each weight should change to reduce the network's error. Gradients point in the direction of improvement.
 
-**Anti-Grokking:** The reverse of grokking — when a network that had learned to generalise suddenly starts failing on new questions again.
+**Activations:**
+The values produced inside the network as it processes an input. By examining activations, researchers can see what internal computations are happening and which parts of the network are "active" for different tasks.
+
+**Loss or Loss Curve:**
+A measurement of how wrong the network is on average. A loss curve is a graph of this error over training time. During the plateau, the loss curve appears flat because performance is not changing, even though the internal structure is.
+
+**[[Anti-Grokking]]:**
+The reverse of grokking. A network that has learned to generalise can suddenly regress, going back to memorisation or failing entirely. The test score collapses after it had recovered.
 
 ---
 
 ## Key Takeaways
 
-- Grokking has three phases: fast memorisation, a long plateau, and a sudden jump to generalisation.
-- The plateau looks like nothing is happening, but two solutions are competing inside the network.
-- Weight decay is the force that slowly tips the balance toward the generalising solution.
-- The plateau is a measurement problem: you cannot see what is coming by looking at the usual training graphs.
-- After grokking, anti-grokking can undo the progress — adding another layer of complexity to the prediction problem.
+- **Grokking has three distinct phases:** fast memorisation (Phase 1), a long silent plateau (Phase 2), and a sudden breakthrough to generalisation (Phase 3).
+
+- **Two solutions compete inside the network:** a bulky memorisation solution (a filing cabinet) and a compact generalisation solution (an algorithm).
+
+- **The plateau is not stagnation — it is hidden progress.** Both solutions are changing during the plateau, even though external scores are frozen.
+
+- **[[Weight Decay]] is the mechanism.** It slowly squeezes the network to abandon bulky solutions and adopt efficient ones. This pressure tips the balance from memorisation toward generalisation.
+
+- **The plateau is a measurement blind spot.** Standard training graphs (loss curves) tell you nothing during Phase 2. You must look inside the network at weights, gradients, or activations to detect pre-grokking signals.
+
+- **Grokking feels sudden because it is sudden.** But the sudden transition is only the visible moment when internal changes finally become strong enough to show up in test performance.
+
+- **[[Anti-Grokking]] adds complexity.** After grokking, training can reverse course. The network can forget its learned rule and regress to memorisation or complete failure.
 
 ---
 

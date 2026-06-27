@@ -61,6 +61,7 @@ Single cause or many ([[Competing Theories of Grokking]])? A universal order par
 ---
 ## Related Notes
 - [[01 - What Is Grokking]] · [[What Causes Grokking]] · [[Anti-Grokking]] · [[The Nine Predictors]]
+- [[Weight Decay Necessity]] — does grokking require weight decay?
 - [[Power - Grokking: Generalisation Beyond Overfitting on Small Algorithmic Datasets]]
 - [[Nanda - Progress Measures for Grokking via Mechanistic Interpretability]]
 - [[Fourier Features]] · [[Transformer]] · [[AdamW]]

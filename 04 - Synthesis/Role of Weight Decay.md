@@ -33,4 +33,6 @@ Too much / too long: regularisation can over-shrink and trigger **[[Anti-Grokkin
 
 ---
 ## Related Notes
+- [[Weight Decay Necessity]] — addresses the core question directly
 - [[Weight Decay]] · [[Heavy-Tailed Self-Regularization]] · [[Anti-Grokking]] · [[What Causes Grokking]]
+- [[Implicit Regularization]]

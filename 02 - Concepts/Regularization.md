@@ -84,7 +84,8 @@ Which type of regularisation most reliably triggers grokking, and which makes it
 
 ---
 ## Related Notes
-- [[Weight Decay]] · [[Heavy-Tailed Self-Regularization]] · [[Inductive Bias]]
+- [[Weight Decay]] · [[Weight Decay Necessity]] · [[Implicit Regularization]]
+- [[Heavy-Tailed Self-Regularization]] · [[Inductive Bias]]
 - [[09 - Weight Decay and Regularization]] · [[Role of Weight Decay]] · [[Anti-Grokking]]
 - [[Zhang - Understanding Deep Learning Still Requires Rethinking Generalization]]
 - [[AdamW]] · [[Gradient Descent]] · [[Memorization]]
